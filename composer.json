@@ -6,6 +6,7 @@
   "keywords": ["contentdetector"],
   "homepage": "https://storagemadeeasy.com/",
   "license": "MIT",
+  "minimum-stability": "dev",
   "authors": [
     {
       "name": "James Norman",
@@ -15,8 +16,9 @@
   ],
 
   "require": {
+    "inacho/php-credit-card-validator": "^1.0"
   },
   "autoload": {
-    "psr-4": {"SME\\FileFabric\\": "src/ContentDetectors"}
+    "psr-4": {"SME\\ContentDetectors\\": "src/"}
   }
 }
