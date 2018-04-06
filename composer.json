@@ -1,0 +1,22 @@
+{
+  "name": "storagemadeeasy/contentdetectors",
+  "version": "1.0",
+  "type": "library",
+  "description": "Detectors type of content in strings",
+  "keywords": ["contentdetector"],
+  "homepage": "https://storagemadeeasy.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "James Norman",
+      "email": "james@storagemadeeasy.com",
+      "homepage": "https://github.com/SMEStorage"
+    }
+  ],
+
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {"SME\\FileFabric\\": "src/ContentDetectors"}
+  }
+}
