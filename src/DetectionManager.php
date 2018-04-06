@@ -14,14 +14,53 @@ use SME\ContentDetectors\Detectors\DetectorInterface;
 class DetectionManager
 {
     private $registeredDetectors = [
-        Detectors\UKPhoneNumber::class,
+        Detectors\UK\PhoneNumber::class,
+        Detectors\UK\NationalInsuranceNumber::class,
+        Detectors\Spain\NifNumber::class,
         Detectors\GenericCreditCard::class
     ];
 
+    public function enableDetector($type)
+    {
+        if (!class_exists($type)) {
+            throw new MissingDetectorException(sprintf('Detector not found "%s"', $type));
+        }
+
+
+        if (!in_array($type, $this->registeredDetectors)) {
+            $this->registeredDetectors[] = $type;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function disableDetector($type)
+    {
+        if (!class_exists($type)) {
+            throw new MissingDetectorException(sprintf('Detector not found "%s"', $type));
+        }
+
+        $this->registeredDetectors = array_filter($this->registeredDetectors, function($item) use ($type) {
+            return $item != $type;
+        });
+    }
+
+    public function getDetectors()
+    {
+        return $this->registeredDetectors;
+    }
+
+    /**
+     * Returns the types of matching content on the given content string
+     *
+     * @param $content
+     * @return MatchCollection
+     */
     public function getMatchingTypes($content)
     {
         $matchCollection = new MatchCollection();
-
 
         foreach ($this->registeredDetectors as $detectorClass) {
             /** @var DetectorInterface $detector */

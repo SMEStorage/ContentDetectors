@@ -1,0 +1,6 @@
+40140140B => valid
+45091457A => valid
+28332260D => valid
+56480032J => valid
+L1234567C  => NOt valid
+M1234567Z => NOt valid

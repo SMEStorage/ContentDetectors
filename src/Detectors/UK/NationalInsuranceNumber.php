@@ -1,17 +1,19 @@
 <?php
-namespace SME\ContentDetectors\Detectors;
+namespace SME\ContentDetectors\Detectors\UK;
 
+use IsoCodes\Uknin;
+use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
 
 /**
- * Class UKPhoneNumber
+ * Class NationalInsuranceNumber
  *
- * Detector implementation for UK Phone Numbers
+ * Detector implementation for UK National Insurance Numbers
  *
- * @package SME\ContentDetectors\Detectors
+ * @package SME\ContentDetectors\Detectors\UK
  * @author James Norman <james@storagemadeeasy.com>
  */
-class UKPhoneNumber implements DetectorInterface
+class NationalInsuranceNumber implements DetectorInterface
 {
     /**
      * Returns the regular expression used to initially detect the content
@@ -20,7 +22,7 @@ class UKPhoneNumber implements DetectorInterface
      */
     public function getRegularExpression()
     {
-        return '/((((\+?44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?)\b/um';
+        return '/\b((?!BG|GB|NK|KN|TN|NT|ZZ)[ABCEGHJ-PRSTW-Z][ABCEGHJ-NPRSTW-Z]?\s*\d{2}\s*\d{2}\s*\d{2}\s*[A-D])\b/umi';
     }
 
     /**
@@ -31,6 +33,13 @@ class UKPhoneNumber implements DetectorInterface
      */
     public function validateMatch($match)
     {
+
+        $validate = Uknin::validate($match);
+
+        if (!$validate) {
+            return false;
+        }
+
         $result = new Match();
         $result->setMatchType(self::class)
             ->setMatchingContent($match);

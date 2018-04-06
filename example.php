@@ -5,12 +5,23 @@ require __DIR__ . '/vendor/autoload.php';
 
 $content = '';
 
-$content .= file_get_contents(__DIR__ . '/testdata/UKPhoneNumbers.txt');
-$content .= file_get_contents(__DIR__ . '/testdata/GenericCreditCards.txt');
+$content .= file_get_contents(__DIR__ . '/testdata/UKPhoneNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/UKNationalInsuranceNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/SpainNifNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/GenericCreditCards.txt') . "\n";
 
 $manager = new \SME\ContentDetectors\DetectionManager();
 
 $matches = $manager->getMatchingTypes($content);
+
+echo "Enabled Detectors:\n";
+foreach ($manager->getDetectors() as $detector) {
+    echo sprintf("----> %s\n" , $detector);
+}
+
+echo sprintf("\n" , $detector);
+
+echo sprintf("Detecting content in files:\n", $detector);
 
 foreach ($matches as $match) {
     $type = $match->getMatchType();

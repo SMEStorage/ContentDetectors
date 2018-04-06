@@ -16,7 +16,8 @@
   ],
 
   "require": {
-    "inacho/php-credit-card-validator": "^1.0"
+    "inacho/php-credit-card-validator": "^1.0",
+    "ronanguilloux/isocodes": "^2.1"
   },
   "autoload": {
     "psr-4": {"SME\\ContentDetectors\\": "src/"}
