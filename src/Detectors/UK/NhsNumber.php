@@ -4,24 +4,25 @@ namespace SME\ContentDetectors\Detectors\UK;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use IsoCodes\Uknin as NationalInsuranceNumberValidator;
+use \CloudDataService\NHSNumberValidation\Validator as NhsNumberValidator;
 
 /**
- * Class NationalInsuranceNumber
+ * Class NhsNumber
  *
- * Detector implementation for UK National Insurance Numbers
+ * Detector implementation for UK NHS Numbers
  *
  * @package SME\ContentDetectors\Detectors\UK
- * @author James Norman <james@storagemadeeasy.com>
+ * @author vanja K. <vanja@storagemadeeasy.com>
  */
-class NationalInsuranceNumber extends Detector implements DetectorInterface
+class NhsNumber extends Detector implements DetectorInterface
 {
     /**
      * uniq code of detector
      * @var string
      */
     
-    protected $code  = 'ukNationalInsuranceNumber';
+    protected $code  = 'ukNhsNumber';
+    
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -30,7 +31,7 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
      */
     public function getRegularExpression()
     {
-        return '/\b((?!BG|GB|NK|KN|TN|NT|ZZ)[ABCEGHJ-PRSTW-Z][ABCEGHJ-NPRSTW-Z]?\s*\d{2}\s*\d{2}\s*\d{2}\s*[A-D])\b/umi';
+        return '/\b(\d{3}[- ]?\d{3}[- ]?\d{4})\b/um';
     }
 
     /**
@@ -41,10 +42,13 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
      */
     public function validateMatch($match)
     {
-
-        $validate = NationalInsuranceNumberValidator::validate($match);
-
-        if (!$validate) {
+        $validate = false;
+        try {
+            $validate = NhsNumberValidator::validate($match);
+        } catch (\Exception $ex) {
+             $validate = false;
+        }
+        if (! $validate) {
             return false;
         }
 
@@ -54,4 +58,5 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
 
         return $result;
     }
+    
 }

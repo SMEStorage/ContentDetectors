@@ -1,9 +1,10 @@
 <?php
 namespace SME\ContentDetectors\Detectors\UK;
 
-use IsoCodes\PhoneNumber as IsoPhoneNumber;
+use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
+use IsoCodes\PhoneNumber as PhoneNumberValidator;
 
 /**
  * Class UKPhoneNumber
@@ -13,8 +14,15 @@ use SME\ContentDetectors\Match;
  * @package SME\ContentDetectors\Detectors
  * @author James Norman <james@storagemadeeasy.com>
  */
-class PhoneNumber implements DetectorInterface
+class PhoneNumber extends Detector implements DetectorInterface
 {
+    /**
+     * uniq code of detector
+     * @var string
+     */
+    
+    protected $code  = 'ukTelephone';
+    
     /**
      * Returns the regular expression used to initially detect the content
      *
@@ -33,7 +41,7 @@ class PhoneNumber implements DetectorInterface
      */
     public function validateMatch($match)
     {
-        $validate = IsoPhoneNumber::validate($match, 'GB');
+        $validate = PhoneNumberValidator::validate($match, 'GB');
 
         if (!$validate) {
             return false;

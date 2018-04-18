@@ -1,0 +1,7 @@
+
+X2228800P  => valid
+Y1358896R  => valid
+Z9595020T  => valid
+
+ Z9595010T => NOT valid
+ 

@@ -1,0 +1,6 @@
+AA1234567 => valid
+MA1234567 => valid
+MM1234567 => valid
+M12345678 => valid
+S12345678 => valid
+123456789 => valid

@@ -1,27 +1,27 @@
 <?php
-namespace SME\ContentDetectors\Detectors\UK;
+namespace SME\ContentDetectors\Detectors\Canada;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use IsoCodes\Uknin as NationalInsuranceNumberValidator;
+use \Validate_CA as SocialInsuranceNumberValidator;
 
 /**
- * Class NationalInsuranceNumber
+ * Class SocialInsuranceNumber
  *
- * Detector implementation for UK National Insurance Numbers
+ * Detector implementation for Canadian Social Insurance Numbers
  *
- * @package SME\ContentDetectors\Detectors\UK
- * @author James Norman <james@storagemadeeasy.com>
+ * @package SME\ContentDetectors\Detectors\Canada
+ * @author vanja K. <vanja@storagemadeeasy.com>
  */
-class NationalInsuranceNumber extends Detector implements DetectorInterface
+class SocialInsuranceNumber extends Detector implements DetectorInterface
 {
     /**
      * uniq code of detector
      * @var string
      */
     
-    protected $code  = 'ukNationalInsuranceNumber';
+    protected $code  = 'caSin';
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -30,9 +30,10 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
      */
     public function getRegularExpression()
     {
-        return '/\b((?!BG|GB|NK|KN|TN|NT|ZZ)[ABCEGHJ-PRSTW-Z][ABCEGHJ-NPRSTW-Z]?\s*\d{2}\s*\d{2}\s*\d{2}\s*[A-D])\b/umi';
+        return '/\b(\d{3}[ -]?\d{3}[ -]?\d{3})\b/um';
     }
-
+    
+    
     /**
      * Provides a callback to validate each match found.
      *
@@ -41,17 +42,17 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
      */
     public function validateMatch($match)
     {
-
-        $validate = NationalInsuranceNumberValidator::validate($match);
-
+        $validate = SocialInsuranceNumberValidator::ssn($match);
+    
         if (!$validate) {
             return false;
         }
-
+    
         $result = new Match();
         $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
+        ->setMatchingContent($match);
+    
         return $result;
     }
+   
 }

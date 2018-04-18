@@ -1,28 +1,27 @@
 <?php
-namespace SME\ContentDetectors\Detectors\UK;
+namespace SME\ContentDetectors\Detectors\Misc;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use IsoCodes\Uknin as NationalInsuranceNumberValidator;
 
 /**
- * Class NationalInsuranceNumber
+ * Class Ip
  *
- * Detector implementation for UK National Insurance Numbers
+ * Detector implementation for IPs
  *
- * @package SME\ContentDetectors\Detectors\UK
- * @author James Norman <james@storagemadeeasy.com>
+ * @package SME\ContentDetectors\Detectors\Misc
+ * @author vanja K. <vanja@storagemadeeasy.com>
  */
-class NationalInsuranceNumber extends Detector implements DetectorInterface
+class Ip extends Detector implements DetectorInterface
 {
     /**
      * uniq code of detector
      * @var string
      */
     
-    protected $code  = 'ukNationalInsuranceNumber';
-    
+    protected $code  = 'ip';
+     
     /**
      * Returns the regular expression used to initially detect the content
      *
@@ -30,7 +29,7 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
      */
     public function getRegularExpression()
     {
-        return '/\b((?!BG|GB|NK|KN|TN|NT|ZZ)[ABCEGHJ-PRSTW-Z][ABCEGHJ-NPRSTW-Z]?\s*\d{2}\s*\d{2}\s*\d{2}\s*[A-D])\b/umi';
+        return '/\b(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]?)\.((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){2}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]))|(([0-9a-f]){1,4}(:([0-9a-f]){1,4}){1,7}))\b/um';
     }
 
     /**
@@ -41,8 +40,7 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
      */
     public function validateMatch($match)
     {
-
-        $validate = NationalInsuranceNumberValidator::validate($match);
+        $validate = filter_var($match, FILTER_VALIDATE_IP);
 
         if (!$validate) {
             return false;

@@ -1,0 +1,12 @@
+059.893.186-42 => valid 
+05989318642  => valid 
+059 893 186 42  => valid 
+059-893-186-42  => valid
+170.160.123-01  => valid
+
+
+
+059.813.186-42 => NOT valid checksum
+05981318642  => NOT valid checksum
+059 193 186 42  => NOT  valid  checksum
+059-193-186-42  => NOT valid checksum

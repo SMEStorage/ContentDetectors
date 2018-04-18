@@ -1,0 +1,9 @@
+ 
+Account #: 26009052712513
+Bank of baneficiary: Privatbank
+Dnepropetrovsk, Ukraine
+Swift Code: PBANUA2X
+Correspondent bank: JP Morgan Chase Bank
+New York, USA
+Swift Code: CHASUS33
+Correspondent Account: 0011000080

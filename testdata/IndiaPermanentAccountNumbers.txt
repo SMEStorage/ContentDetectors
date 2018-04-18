@@ -1,0 +1,2 @@
+AAAZZ1234C =>  not valid
+AECTK5435N =>  should be valid

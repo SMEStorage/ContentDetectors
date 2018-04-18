@@ -1,0 +1,3 @@
+12AA12345 => valid
+08CD50338 => valid
+60RF19342 => valid

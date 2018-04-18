@@ -1,0 +1,23 @@
+123 123 123 =>  not  valid SIN 
+123123 123 =>  not  valid SIN 
+123 123123 =>  not  valid SIN 
+123123123 =>  not  valid SIN 
+
+123-123-123 =>  not  valid SIN 
+123123-123 =>  not  valid SIN 
+123-123123 =>  not  valid SIN 
+123123123 =>  not  valid SIN 
+
+123 123-123 =>  not  valid SIN 
+123-123 123 =>  not  valid SIN 
+
+
+545 057 135 => valid SIN 
+339139 818 => valid SIN 
+741 850952 => valid SIN 
+422505396 => valid SIN 
+ 
+ 545-057-135 => valid SIN 
+339139-818 => valid SIN 
+741-850 952 => valid SIN 
+422-505396 => valid SIN 
