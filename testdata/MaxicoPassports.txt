@@ -1,0 +1,3 @@
+A12345678 => valid
+ABC-12345 => valid
+NLE-32137 => valid

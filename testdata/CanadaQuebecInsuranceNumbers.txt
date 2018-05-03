@@ -1,0 +1,3 @@
+CARS 7102 1614 => valid
+ 
+CARS71021614  => valid

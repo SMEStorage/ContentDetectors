@@ -5,10 +5,58 @@ require __DIR__ . '/vendor/autoload.php';
 
 $content = '';
 
-$content .= file_get_contents(__DIR__ . '/testdata/UKPhoneNumbers.txt') . "\n";
-$content .= file_get_contents(__DIR__ . '/testdata/UKNationalInsuranceNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/AustraliaMedicareNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/AustraliaTaxFileNumber.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/BankGenericCreditCards.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/BankIbanAccountNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/BankSwiftCodes.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/BrazilCpfNumbers.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/CanadaBritishColumbiaInsuranceNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/CanadaOntarioInsuranceNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/CanadaPassports.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/CanadaQuebecInsuranceNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/CanadaSocialInsuranceNumbers.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/ChinaPassports.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/FranceINSEENumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/FranceNationalIdCard.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/FrancePassports.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/GermanyPassports.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/IndiaPermanentAccountNumbers.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/JapanPassports.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/MaxicoPassports.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/MexicoNationalNumbers.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/MiscEmails.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/MiscICD-10CMCodes.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/MiscICD-9CMCodes.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/MiscIPs.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/NetherlandsIdNumbers.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/SouthKoreaPassports.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/SpainNieNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/SpainNifNumbers.txt') . "\n";
-$content .= file_get_contents(__DIR__ . '/testdata/GenericCreditCards.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/SpainPassports.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/UKDrivingLicenses.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/UKNationalInsuranceNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/UKNHSNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/UKPassports.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/UKPhoneNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/UKPlateNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/UKTaxpayerNumbers.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/UsSSN.txt') . "\n";
 
 $manager = new \SME\ContentDetectors\DetectionManager();
 
@@ -16,7 +64,7 @@ $matches = $manager->getMatchingTypes($content);
 
 echo "Enabled Detectors:\n";
 foreach ($manager->getDetectors() as $detector) {
-    echo sprintf("----> %s\n" , $detector);
+    echo sprintf("----> %s\n", $detector);
 }
 
 echo sprintf("\n" , $detector);
@@ -36,7 +84,7 @@ foreach ($matches as $match) {
             return is_string($value);
         }, ARRAY_FILTER_USE_BOTH);
 
-        $dataString = '('.  http_build_query($data,'',', ') . ')';
+        $dataString = '(' . http_build_query($data, '', ', ') . ')';
     }
 
     echo sprintf("Found '%s' '%s' %s\n", $match->getMatchType(), $match->getMatchingContent(), $dataString);

@@ -1,28 +1,29 @@
 <?php
-namespace SME\ContentDetectors\Detectors\UK;
+namespace SME\ContentDetectors\Detectors\Bank;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use IsoCodes\Uknin as NationalInsuranceNumberValidator;
+use \IBAN as IbanAccountNumberValidator;
 
 /**
- * Class NationalInsuranceNumber
+ * Class IbanAccountNumber
  *
- * Detector implementation for UK National Insurance Numbers
+ * Detector implementation for IBAN Account Numbers
  *
- * @package SME\ContentDetectors\Detectors\UK
- * @author James Norman <james@storagemadeeasy.com>
+ * @package SME\ContentDetectors\Detectors\Bank
+ * @author vanja K. <vanja@storagemadeeasy.com>
  */
-class NationalInsuranceNumber extends Detector implements DetectorInterface
+class IbanAccountNumber extends Detector implements DetectorInterface
 {
     /**
      * uniq code of detector
      * @var string
      */
     
-    protected $code  = 'ukNationalInsuranceNumber';
+    protected $code  = 'bankIban';
     
+     
     /**
      * Returns the regular expression used to initially detect the content
      *
@@ -30,7 +31,7 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
      */
     public function getRegularExpression()
     {
-        return '/\b((?!BG|GB|NK|KN|TN|NT|ZZ)[ABCEGHJ-PRSTW-Z][ABCEGHJ-NPRSTW-Z]?\s*\d{2}\s*\d{2}\s*\d{2}\s*[A-D])\b/umi';
+        return '/\b([a-zA-Z]{2}[0-9]{2}[ -]?([a-zA-Z0-9]{4}[ -]?){3,6}[a-zA-Z0-9]{0,4})\b/uim';
     }
 
     /**
@@ -40,10 +41,9 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
      * @return Match
      */
     public function validateMatch($match)
-    {
-
-        $validate = NationalInsuranceNumberValidator::validate($match);
-
+    {   
+        $validate = IbanAccountNumberValidator::Verify(preg_replace("/[^\dA-Z]/ui", "", $match));
+          
         if (!$validate) {
             return false;
         }
@@ -54,4 +54,7 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
 
         return $result;
     }
+    
+    
+    
 }

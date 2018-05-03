@@ -1,9 +1,11 @@
 <?php
 namespace SME\ContentDetectors\Detectors\Spain;
 
-use IsoCodes\Nif;
+use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
+use \MPijierro\Identity\Identity as NifNumberValidator;
+
 
 /**
  * Class NifNumber
@@ -13,8 +15,15 @@ use SME\ContentDetectors\Match;
  * @package SME\ContentDetectors\Detectors\Spain
  * @author James Norman <james@storagemadeeasy.com>
  */
-class NifNumber implements DetectorInterface
+class NifNumber extends Detector implements DetectorInterface
 {
+    /**
+     * uniq code of detector
+     * @var string
+     */
+    
+    protected $code  = 'esNif';
+     
     /**
      * Returns the regular expression used to initially detect the content
      *
@@ -33,8 +42,8 @@ class NifNumber implements DetectorInterface
      */
     public function validateMatch($match)
     {
-        $validate = Nif::validate($match);
-
+        $validate = NifNumberValidator::isValidNif($match);
+     
         if (!$validate) {
             return false;
         }
@@ -45,4 +54,5 @@ class NifNumber implements DetectorInterface
 
         return $result;
     }
+    
 }

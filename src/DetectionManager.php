@@ -14,11 +14,59 @@ use SME\ContentDetectors\Detectors\DetectorInterface;
 class DetectionManager
 {
     private $registeredDetectors = [
-        Detectors\UK\PhoneNumber::class,
-        Detectors\UK\NationalInsuranceNumber::class,
+        Detectors\Australia\MedicareNumber::class,
+        Detectors\Australia\TaxFileNumber::class,
+        
+        Detectors\Bank\GenericCreditCard::class,
+        Detectors\Bank\IbanAccountNumber::class,
+        Detectors\Bank\SwiftCode::class,
+        
+        Detectors\Brazil\CpfNumber::class,
+        
+        Detectors\Canada\BritishColumbiaInsuranceNumber::class,
+        Detectors\Canada\OntarioInsuranceNumber::class,
+        Detectors\Canada\Passport::class,
+        Detectors\Canada\QuebecInsuranceNumber::class,
+        Detectors\Canada\SocialInsuranceNumber::class,
+        
+        Detectors\China\Passport::class,
+
+        Detectors\France\INSEENumber::class,
+        Detectors\France\NationalIdCard::class,
+        Detectors\France\Password::class,
+        
+        Detectors\Germany\Passport::class,
+        
+        Detectors\India\PermanentAccountNumber::class,
+        
+        Detectors\Japan\Passport::class,
+        
+        Detectors\Mexico\NationalNumber::class,
+        Detectors\Mexico\Passport::class,
+         
+        Detectors\Misc\Email::class,
+        Detectors\Misc\Icd10cm::class,
+        Detectors\Misc\Icd9cm::class,
+        Detectors\Misc\Ip::class,
+        
+        Detectors\Netherlands\IdNumber::class,
+        
+        Detectors\SouthKorea\Passport::class,
+         
+        Detectors\Spain\NieNumber::class,
         Detectors\Spain\NifNumber::class,
-        Detectors\GenericCreditCard::class
-    ];
+        Detectors\Spain\Passport::class,
+        
+        Detectors\UK\DrivingLicense::class,
+        Detectors\UK\NationalInsuranceNumber::class,
+        Detectors\UK\NhsNumber::class,
+        Detectors\UK\Passport::class,
+        Detectors\UK\PhoneNumber::class,
+        Detectors\UK\PlateNumber::class,
+        Detectors\UK\TaxpayerNumber::class,
+         
+        Detectors\US\Ssn::class
+   ];
 
     public function enableDetector($type)
     {
@@ -53,16 +101,42 @@ class DetectionManager
     }
 
     /**
+     * Returns detector class by code
+     *
+     * @param $code
+     * @return string
+     */
+    public function getDetectorByCode($code)
+    {
+        $detectorClassResult = null;
+        
+        foreach ($this->registeredDetectors as $detectorClass) {
+            /** @var DetectorInterface $detector */
+            $detector = new $detectorClass;
+            if ($detector->getCode() == $code) {
+                $detectorClassResult = $detectorClass;
+                break;
+            }
+        }
+        
+        return $detectorClass;
+    }
+    
+    /**
      * Returns the types of matching content on the given content string
      *
      * @param $content
+     * @param DetectorInterface $filterClass
      * @return MatchCollection
      */
-    public function getMatchingTypes($content)
+    public function getMatchingTypes($content, $filterClass = null)
     {
         $matchCollection = new MatchCollection();
 
         foreach ($this->registeredDetectors as $detectorClass) {
+            if ($filterClass && ($filterClass != $detectorClass)) {
+                continue;
+            }
             /** @var DetectorInterface $detector */
             $detector = new $detectorClass;
             $matches = [];
@@ -91,6 +165,23 @@ class DetectionManager
         }
 
         return $matchCollection;
+    }
+    
+    /**
+     * Returns matching content for specified type
+     *
+     * @param $content
+     * @param DetectorInterface $filterClass
+     * @return MatchCollection
+     */
+    public function getMatchingByType($content, $filterClass)
+    {
+         
+        if (! class_exists($filterClass)) {
+            throw new MissingDetectorException(sprintf('Detector not found "%s"', $filterClass));
+        }
+        
+        return $this->getMatchingTypes($content, $filterClass);
     }
 
 }

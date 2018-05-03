@@ -1,25 +1,49 @@
 {
-  "name": "storagemadeeasy/contentdetectors",
-  "version": "1.0",
-  "type": "library",
-  "description": "Detectors type of content in strings",
-  "keywords": ["contentdetector"],
-  "homepage": "https://storagemadeeasy.com/",
-  "license": "MIT",
-  "minimum-stability": "dev",
-  "authors": [
-    {
-      "name": "James Norman",
-      "email": "james@storagemadeeasy.com",
-      "homepage": "https://github.com/SMEStorage"
-    }
-  ],
-
-  "require": {
-    "inacho/php-credit-card-validator": "^1.0",
-    "ronanguilloux/isocodes": "^2.1"
-  },
-  "autoload": {
-    "psr-4": {"SME\\ContentDetectors\\": "src/"}
-  }
+   "name":"storagemadeeasy/contentdetectors",
+   "version":"1.0",
+   "type":"library",
+   "description":"Detectors type of content in strings",
+   "keywords":[
+      "contentdetector"
+   ],
+   "homepage":"https://storagemadeeasy.com/",
+   "license":"MIT",
+   "minimum-stability":"dev",
+   "authors":[
+      {
+         "name":"James Norman",
+         "email":"james@storagemadeeasy.com",
+         "homepage":"https://github.com/SMEStorage"
+      },
+      {
+         "name":"Ivan Kydysiuk",
+         "email":"vanja@storagemadeeasy.com",
+         "homepage":"https://github.com/SMEStorage"
+      }
+   ],
+   "require":{
+      "inacho/php-credit-card-validator":"^1.0",
+      "ronanguilloux/isocodes":"^2.1",
+      "cds/nhs-number-validation":"1.0.2",
+      "globalcitizen/php-iban":"*",
+      "giggsey/libphonenumber-for-php":"^8.9",
+      "mpijierro/identity":"dev-master",
+      "pear/validate_ca":"dev-master",
+      "pear/validate_au":"dev-master"
+   },
+   "repositories":[
+      {
+         "type":"git",
+         "url":"https://github.com/pear/Validate_AU.git"
+      },
+      {
+         "type":"git",
+         "url":"https://github.com/pear/Validate_CA.git"
+      }
+   ],
+   "autoload":{
+      "psr-4":{
+         "SME\\ContentDetectors\\":"src/"
+      }
+   }
 }

@@ -1,19 +1,28 @@
 <?php
-namespace SME\ContentDetectors\Detectors;
+namespace SME\ContentDetectors\Detectors\Bank;
 
-use Inacho\CreditCard as CreditCardValidator;
+use SME\ContentDetectors\Detectors\Detector;
+use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
+use Inacho\CreditCard as GenericCreditCardValidator;
 
 /**
  * Class GenericCreditCard
  *
  * Detector implementation for Generic Credit card detection
  *
- * @package SME\ContentDetectors\Detectors
+ * @package SME\ContentDetectors\Detectors\Bank
  * @author James Norman <james@storagemadeeasy.com>
  */
-class GenericCreditCard implements DetectorInterface
+class GenericCreditCard extends Detector implements DetectorInterface
 {
+    /**
+     * uniq code of detector
+     * @var string
+     */
+    
+    protected $code  = 'creditcard';
+    
     /**
      * Returns the regular expression used to initially detect the content
      *
@@ -32,7 +41,7 @@ class GenericCreditCard implements DetectorInterface
      */
     public function validateMatch($match)
     {
-        $info = CreditCardValidator::validCreditCard($match);
+        $info = GenericCreditCardValidator::validCreditCard($match);
 
         if(is_array($info) && array_key_exists('valid', $info) && $info['valid'] !== true) {
             return false;

@@ -1,0 +1,6 @@
+AA123456 => valid
+AA 123456  => valid
+AA-123456  => valid
+ZAB000256  => valid
+ZAB 000256  => valid
+ZAB-000256  => valid

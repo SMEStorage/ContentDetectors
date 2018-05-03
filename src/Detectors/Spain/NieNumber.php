@@ -1,28 +1,28 @@
 <?php
-namespace SME\ContentDetectors\Detectors\UK;
+namespace SME\ContentDetectors\Detectors\Spain;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use IsoCodes\Uknin as NationalInsuranceNumberValidator;
+use \MPijierro\Identity\Identity as NieNumberValidator;
 
 /**
- * Class NationalInsuranceNumber
+ * Class NieNumber
  *
- * Detector implementation for UK National Insurance Numbers
+ * Detector implementation for Spanish Nie Numbers
  *
- * @package SME\ContentDetectors\Detectors\UK
- * @author James Norman <james@storagemadeeasy.com>
+ * @package SME\ContentDetectors\Detectors\Spain
+ * @author vanja K. <vanja@storagemadeeasy.com>
  */
-class NationalInsuranceNumber extends Detector implements DetectorInterface
+class NieNumber extends Detector implements DetectorInterface
 {
     /**
      * uniq code of detector
      * @var string
      */
     
-    protected $code  = 'ukNationalInsuranceNumber';
-    
+    protected $code  = 'esNie';
+     
     /**
      * Returns the regular expression used to initially detect the content
      *
@@ -30,7 +30,7 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
      */
     public function getRegularExpression()
     {
-        return '/\b((?!BG|GB|NK|KN|TN|NT|ZZ)[ABCEGHJ-PRSTW-Z][ABCEGHJ-NPRSTW-Z]?\s*\d{2}\s*\d{2}\s*\d{2}\s*[A-D])\b/umi';
+        return '/\b([XYZ]\d{7}[ -]?[TRWAGMYFPDXBNJZSQVHLCKE]{1})\b/umi';
     }
 
     /**
@@ -41,8 +41,7 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
      */
     public function validateMatch($match)
     {
-
-        $validate = NationalInsuranceNumberValidator::validate($match);
+        $validate =  NieNumberValidator::isValidNie($match);
 
         if (!$validate) {
             return false;
@@ -54,4 +53,6 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
 
         return $result;
     }
+    
+   
 }
