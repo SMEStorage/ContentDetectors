@@ -1,7 +1,14 @@
 # Content Detectors
-This is a PHP package that can help identify certain types of content from strings. 
+This is a PHP package created by the [Storage Made Easy](https://storagemadeeasy.com) team, that provides built in detectors to find specific types of content within a given content string
 
-## Installation
+These content detectors are used as part of Storage Made Easy's [Content Detection and PII Discovery features](https://storagemadeeasy.com/GDPR/). Changes made here are pulled in up-stream to the Enterprise File Fabric. 
+
+## Requirements
+
+- PHP 5.6 or newer
+- [PHP Composer](https://getcomposer.org/)
+
+## Using this library
 
 ```
 composer require storagemadeeasy/contentdetectors
@@ -12,21 +19,31 @@ composer require storagemadeeasy/contentdetectors
 ````php
 <?php
 
+// Require composer autoload
 require __DIR__ . '/vendor/autoload.php';
+
 $manager = new \SME\ContentDetectors\DetectionManager();
 
 $matches = $manager->getMatchingTypes($content);
 foreach ($matches as $match) {
-    // Do something with the match
+    // Get the match type, e.g. Passport Number
+    $type = $match->getMatchType();
+    
+    // Get the string matches 
+    $content = $match->getMatchingContent();
+    
+    // Get any additional metadata about the maches, e.g. Credit card number type like Visa
+    $data = $match->getData();
 }
 ````
 
-## Detectors
-This comes with a couple of Detectors, with more to follow. Presently this supports:
-- Credit cards
-- UK Phone Numbers
+## Available Content Detectors
+There are a number of detectors that this package supports. A list of connectors can be found in the `src/Detectors` directory. 
 
-The `DetectionManager` provides methods to obtain the list of available Detectors. 
+### Selecting Content Detectors in code
+You do not have to use all of the content detectors that ship with this package. The `DetectionManager` class provides some methods for enabling and disabling some of the available content detectors. 
+
+The following is an example of the DetectionManager class interface. 
 
 ````php
 $manager = new \SME\ContentDetectors\DetectionManager();
