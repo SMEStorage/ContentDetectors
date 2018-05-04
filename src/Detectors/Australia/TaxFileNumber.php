@@ -5,6 +5,7 @@ use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
 use \Validate_AU as TaxFileNumberValidator;
+use Validate_AU;
 
 /**
  * Class TaxFileNumber
