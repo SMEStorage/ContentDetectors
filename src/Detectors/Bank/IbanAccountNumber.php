@@ -23,7 +23,22 @@ class IbanAccountNumber extends Detector implements DetectorInterface
     
     protected $code  = 'bankIban';
     
-     
+    /**
+     * validator
+     * @var IbanAccountNumberValidator
+     */
+    
+    protected $_validator = null;
+    
+    
+    protected function getValidator() {
+        if (! $this->_validator) {
+            $this->_validator = new IbanAccountNumberValidator();
+        }
+        
+        return $this->_validator;
+    }
+    
     /**
      * Returns the regular expression used to initially detect the content
      *
@@ -42,7 +57,7 @@ class IbanAccountNumber extends Detector implements DetectorInterface
      */
     public function validateMatch($match)
     {   
-        $validate = IbanAccountNumberValidator::Verify(preg_replace("/[^\dA-Z]/ui", "", $match));
+        $validate = $this->getValidator()->Verify(preg_replace("/[^\dA-Z]/ui", "", $match));
           
         if (!$validate) {
             return false;

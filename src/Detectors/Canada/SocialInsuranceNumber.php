@@ -4,7 +4,7 @@ namespace SME\ContentDetectors\Detectors\Canada;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use \Validate_CA as SocialInsuranceNumberValidator;
+
 
 /**
  * Class SocialInsuranceNumber
@@ -42,8 +42,9 @@ class SocialInsuranceNumber extends Detector implements DetectorInterface
      */
     public function validateMatch($match)
     {
-        $validate = SocialInsuranceNumberValidator::ssn($match);
-    
+         
+        $validate = $this->ValidateSocialInsuranceNumber($match);
+
         if (!$validate) {
             return false;
         }
@@ -53,6 +54,27 @@ class SocialInsuranceNumber extends Detector implements DetectorInterface
         ->setMatchingContent($match);
     
         return $result;
+    }
+    
+     /**  
+     * Validate Social Insurance Number by checksum
+     *
+     * @param $sin string
+     * @return bool
+     */
+    
+   
+    private  function ValidateSocialInsuranceNumber($sin) {
+         // remove anything other than digits
+        $sin = preg_replace("/[^\d]/u", "", $sin);
+         
+        // length check
+        if (strlen($sin) != 9) {
+            return false;
+        }
+        
+        // _luhn function declared in globalcitizen/php-iban package, file php-iban.php
+        return _luhn($sin) ? false : true;
     }
    
 }

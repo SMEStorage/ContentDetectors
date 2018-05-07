@@ -25,6 +25,22 @@ class NifNumber extends Detector implements DetectorInterface
     protected $code  = 'esNif';
      
     /**
+     * validator
+     * @var NieNumberValidator
+     */
+    
+    protected $_validator = null;
+    
+    
+    protected function getValidator() {
+        if (! $this->_validator) {
+            $this->_validator = new NifNumberValidator();
+        }
+    
+        return $this->_validator;
+    }
+    
+    /**
      * Returns the regular expression used to initially detect the content
      *
      * @return string
@@ -42,7 +58,7 @@ class NifNumber extends Detector implements DetectorInterface
      */
     public function validateMatch($match)
     {
-        $validate = NifNumberValidator::isValidNif($match);
+        $validate = $this->getValidator()->isValidNif($match);
      
         if (!$validate) {
             return false;
