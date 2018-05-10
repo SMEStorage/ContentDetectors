@@ -24,6 +24,22 @@ class NieNumber extends Detector implements DetectorInterface
     protected $code  = 'esNie';
      
     /**
+     * validator
+     * @var NieNumberValidator
+     */
+    
+    protected $_validator = null;
+    
+    
+    protected function getValidator() {
+        if (! $this->_validator) {
+            $this->_validator = new NieNumberValidator();
+        }
+    
+        return $this->_validator;
+    }
+    
+    /**
      * Returns the regular expression used to initially detect the content
      *
      * @return string
@@ -41,7 +57,7 @@ class NieNumber extends Detector implements DetectorInterface
      */
     public function validateMatch($match)
     {
-        $validate =  NieNumberValidator::isValidNie($match);
+        $validate =  $this->getValidator()->isValidNie($match);
 
         if (!$validate) {
             return false;

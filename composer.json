@@ -27,20 +27,8 @@
       "cds/nhs-number-validation":"1.0.2",
       "globalcitizen/php-iban":"*",
       "giggsey/libphonenumber-for-php":"^8.9",
-      "mpijierro/identity":"dev-master",
-      "pear/validate_ca":"dev-master",
-      "pear/validate_au":"dev-master"
+      "mpijierro/identity":"dev-master" 
    },
-   "repositories":[
-      {
-         "type":"git",
-         "url":"https://github.com/pear/Validate_AU.git"
-      },
-      {
-         "type":"git",
-         "url":"https://github.com/pear/Validate_CA.git"
-      }
-   ],
    "autoload":{
       "psr-4":{
          "SME\\ContentDetectors\\":"src/"

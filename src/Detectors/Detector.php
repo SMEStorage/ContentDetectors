@@ -59,7 +59,7 @@ class Detector
          */
          
         $result = new Match();
-        $result->setMatchType(self::class)
+        $result->setMatchType(static::class)
         ->setMatchingContent($match);
     
         return $result;

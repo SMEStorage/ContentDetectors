@@ -23,6 +23,22 @@ class NhsNumber extends Detector implements DetectorInterface
     
     protected $code  = 'ukNhsNumber';
     
+    /**
+     * validator
+     * @var NieNumberValidator
+     */
+    
+    protected $_validator = null;
+    
+    
+    protected function getValidator() {
+        if (! $this->_validator) {
+            $this->_validator = new NhsNumberValidator();
+        }
+    
+        return $this->_validator;
+    }
+    
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -44,7 +60,7 @@ class NhsNumber extends Detector implements DetectorInterface
     {
         $validate = false;
         try {
-            $validate = NhsNumberValidator::validate($match);
+            $validate = $this->getValidator()->validate($match);
         } catch (\Exception $ex) {
              $validate = false;
         }
