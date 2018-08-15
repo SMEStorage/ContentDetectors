@@ -29,7 +29,7 @@ class Email extends Detector implements DetectorInterface
      */
     public function getRegularExpression()
     {
-        return '/\b([\-\w\+](\.?[\-\w\+])*@\[?([0-9a-z](\-?\_?[0-9a-z])*\.)+[a-z0-9]{2,9}\]?)/umi';
+        return '/\b([\-\w\+](\.?[\-\w\+])*@\[?([0-9a-z](\-?\_?[0-9a-z])*\.)+[a-z0-9\-]{2,64}\]?)/umi';
     }
 
     /**
