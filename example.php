@@ -12,16 +12,30 @@ $content .= file_get_contents(__DIR__ . '/testdata/BankGenericCreditCards.txt') 
 $content .= file_get_contents(__DIR__ . '/testdata/BankIbanAccountNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/BankSwiftCodes.txt') . "\n";
 
-$content .= file_get_contents(__DIR__ . '/testdata/BrazilCpfNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/BelgiumNationalNumber.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/BelgiumNationalRegisterNumber.txt') . "\n";
 
+$content .= file_get_contents(__DIR__ . '/testdata/BrazilCpfNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/BrazilLegalEntityNumber.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/BrazilNationalIdCard.txt') . "\n";
+
+ 
 $content .= file_get_contents(__DIR__ . '/testdata/CanadaBritishColumbiaInsuranceNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/CanadaOntarioInsuranceNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/CanadaPassports.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/CanadaQuebecInsuranceNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/CanadaSocialInsuranceNumbers.txt') . "\n";
 
+$content .= file_get_contents(__DIR__ . '/testdata/ChileNationalIdNumber.txt') . "\n";
+
 $content .= file_get_contents(__DIR__ . '/testdata/ChinaPassports.txt') . "\n";
 
+$content .= file_get_contents(__DIR__ . '/testdata/CroatiaPersonalIdentificationNumber.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/CzechRepublicNationalIdCard.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/DenmarkPersonalIdentificationNumber.txt') . "\n";
+  
 $content .= file_get_contents(__DIR__ . '/testdata/FranceINSEENumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/FranceNationalIdCard.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/FrancePassports.txt') . "\n";

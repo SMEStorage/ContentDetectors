@@ -1,0 +1,4 @@
+47341939500 => valid
+01651858162 => valid
+05859927944 => valid
+05859927947 => not  valid  checksum

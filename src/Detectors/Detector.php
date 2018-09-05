@@ -57,12 +57,30 @@ class Detector
          * no algorithm validation for provided 
          * $match in this code
          */
-         
+        
+        $valid = $this->validate($match);
+        
+        if (! $valid) {
+            return false;
+        }
+          
         $result = new Match();
         $result->setMatchType(static::class)
         ->setMatchingContent($match);
     
         return $result;
+    }
+    
+    /**
+     * Provides a function to validate found match.
+     *
+     * @param $match
+     * @return bool
+     */
+    
+    protected function validate($match)
+    {
+        return true;
     }
      
 }

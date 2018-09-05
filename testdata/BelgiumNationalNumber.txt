@@ -1,0 +1,2 @@
+1234567890 => valid
+123489090 => not valid (less than 10 digits)

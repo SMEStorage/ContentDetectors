@@ -6,21 +6,22 @@ use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
 
 /**
- * Class CpfNumber
+ * Class LegalEntityNumber
  *
- * Detector implementation for Brazilian Cpf Numbers (Cadastro de Pessoas Físicas)
+ * Detector implementation for Brazilian Legal Entity Number (CNPJ - Cadastro Nacional da Pessoa Jurídica)
+ * https://en.wikipedia.org/wiki/CNPJ
  *
  * @package SME\ContentDetectors\Detectors\Brazil
  * @author vanja K. <vanja@storagemadeeasy.com>
  */
-class CpfNumber extends Detector implements DetectorInterface
+class LegalEntityNumber extends Detector implements DetectorInterface
 {
     /**
      * uniq code of detector
      * @var string
      */
     
-    protected $code  = 'brCpfNumber';
+    protected $code  = 'brLegalEntityNumber';
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -29,50 +30,52 @@ class CpfNumber extends Detector implements DetectorInterface
      */
     public function getRegularExpression()
     {
-        return '/\b(\d{3}[- \.]?\d{3}[- \.]?\d{3}[- \.]?\d{2})\b/um';
+        return '/\b(\d{2}[\- \.]?\d{3}[\- \.]?\d{3}[\- \.\/]?\d{4}[\- \.]?\d{2})\b/um';
     }
 
     
-    
-    /** based on http://search.cpan.org/dist/Business-BR-Ids/lib/Business/BR/CPF.pm code
+    /** based on https://metacpan.org/pod/distribution/Business-BR-Ids/lib/Business/BR/CNPJ.pm
      * 
-     * @param $cpfNumber
+     * @param $match
      * @return bool
      */
-    protected function validate($match)
-    {
+     protected function validate($match)
+     {
+    
          
-        $cpfNumber = preg_replace("/[^\d]/u", "", $match);
+        $cnpjNumber = preg_replace("/[^\d]/u", "", $match);
         
-        // Check for 11
-        $length = strlen($cpfNumber);
-        if ($length == 11) {
+        // Check for 14
+        $length = strlen($cnpjNumber);
+        if ($length == 14) {
             
             $sum1 = 0;
-            $weights = array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
+            $weights = array(5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2, 1 , 0);
             foreach ($weights as $position => $weight) {
-                $digit = $cpfNumber[$position];
+                $digit = $cnpjNumber[$position];
                 $sum1 += $weight * intval($digit);
             }
             $cheknum1 = $sum1 % 11;
             
-            if (! (($cheknum1 == 0) || (($cheknum1 == 1) && (intval($cpfNumber[9]) == 0)))) {
+            if (! (($cheknum1 == 0) || (($cheknum1 == 1) && (intval($cnpjNumber[12]) == 0)))) {
                 return false;
             }
+           
             
             $sum2 = 0;
-            $weights = array(0, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
+            $weights = array(6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2, 1);
             foreach ($weights as $position => $weight) {
-                $digit = $cpfNumber[$position];
+                $digit = $cnpjNumber[$position];
                 $sum2 += $weight * intval($digit);
             }
             
             $cheknum2 = $sum2 % 11;
             
-            if (($cheknum2 == 0) || (($cheknum2 == 1) && (intval($cpfNumber[11]) == 0))) {
+            if (($cheknum2 == 0) || (($cheknum2 == 1) && (intval($cnpjNumber[13]) == 0))) {
                 return true;
             }
         }
+        
         return false;
     }
     

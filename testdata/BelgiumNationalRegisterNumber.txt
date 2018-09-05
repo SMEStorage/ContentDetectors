@@ -1,0 +1,4 @@
+850730 033 28 => valid
+850730-033 28 => valid
+850730.033 28 => valid
+850730.03321 => not valid checksum

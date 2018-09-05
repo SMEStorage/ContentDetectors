@@ -1,26 +1,27 @@
 <?php
-namespace SME\ContentDetectors\Detectors\France;
+namespace SME\ContentDetectors\Detectors\CzechRepublic;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
 
 /**
- * Class Passport
+ * Class NationalIdCard
  *
- * Detector implementation for Franch Passports
+ * Detector implementation for Czech Republic National identity cards
+ * https://en.wikipedia.org/wiki/Czech_national_identity_card
  *
- * @package SME\ContentDetectors\Detectors\France
+ * @package SME\ContentDetectors\Detectors\CzechRepublic
  * @author vanja K. <vanja@storagemadeeasy.com>
  */
-class Password extends Detector implements DetectorInterface
+class NationalIdCard extends Detector implements DetectorInterface
 {
     /**
      * uniq code of detector
      * @var string
      */
     
-    protected $code  = 'frPassport';
+    protected $code  = 'czNationalIdCard';
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -29,7 +30,7 @@ class Password extends Detector implements DetectorInterface
      */
     public function getRegularExpression()
     {
-        return '/\b(\d{2}[A-Z]{2}\d{5})\b/um';
+        return '/\b(\d{9})\b/um';
     }
  
 }
