@@ -31,30 +31,10 @@ class MedicareNumber extends Detector implements DetectorInterface
         return '/\b([2-6]\d{3}[ ]?\d{5}[ ]?\d{1}[- ]?\d?)\b/um';
     }
 
-    /**
-     * Provides a callback to validate each match found.
-     *
-     * @param $match
-     * @return Match
-     */
-    public function validateMatch($match)
-    {
-        
-        $validate = $this->ValidateMedicareNumber($match);
-        
-        if (!$validate) {
-            return false;
-        }
-
-        $result = new Match();
-        $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
-        return $result;
-    }
     
     
-    /** validateMedicareNumber
+    
+    /**  
     * Checks medicare card number for validity
     * using the published checksum algorithm.
     * Returns: true if the number is valid, false otherwise.
@@ -67,14 +47,13 @@ class MedicareNumber extends Detector implements DetectorInterface
     * License: The author claims no rights to this code.
     * Use it as you wish.
     * 
-    * @param $MedicareNo
+    * @param string
     * @return bool
     */
     
-  
-    private function ValidateMedicareNumber($MedicareNo)
-    {
-        $medicareNo = preg_replace("/[^\d]/u", "", $MedicareNo);
+     protected function validate($match)
+     {
+        $medicareNo = preg_replace("/[^\d]/u", "", $match);
     
         // Check for 11 or 10 digits
         $length = strlen($medicareNo);

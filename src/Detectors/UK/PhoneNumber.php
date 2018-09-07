@@ -34,23 +34,17 @@ class PhoneNumber extends Detector implements DetectorInterface
     }
 
     /**
-     * Provides a callback to validate each match found.
+     * Validate UK Phone Numbers
      *
-     * @param $match
-     * @return Match
+     * @param string
+     * @return bool
      */
-    public function validateMatch($match)
+    protected function validate($match)
     {
-        $validate = PhoneNumberValidator::validate($match, 'GB');
-
-        if (!$validate) {
-            return false;
-        }
-
-        $result = new Match();
-        $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
-        return $result;
+       $valid  = PhoneNumberValidator::validate($match, 'GB');
+    
+        return $valid ? true : false;
     }
+    
+     
 }

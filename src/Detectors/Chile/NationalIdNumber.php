@@ -33,12 +33,12 @@ class NationalIdNumber extends Detector implements DetectorInterface
         return '/\b(\d{1,2}[\- \.,]?\d{3}[\- \.,]?\d{3}[\- \.]?[0-9kK])\b/um';
     }
     
-   
-    
-    
-    /** based on https://www.vesic.org/english/blog-eng/net/verifying-chilean-rut-code-tax-number/
+     
+    /**
+     * Validate Chilean National Identification Number 
+     * based on https://www.vesic.org/english/blog-eng/net/verifying-chilean-rut-code-tax-number/
      *
-     * @param $match
+     * @param string
      * @return bool
      */
      protected function validate($match)

@@ -10,6 +10,7 @@ use SME\ContentDetectors\Match;
  * Class SocialInsuranceNumber
  *
  * Detector implementation for Canadian Social Insurance Numbers
+ * https://en.wikipedia.org/wiki/Social_Insurance_Number
  *
  * @package SME\ContentDetectors\Detectors\Canada
  * @author vanja K. <vanja@storagemadeeasy.com>
@@ -35,38 +36,17 @@ class SocialInsuranceNumber extends Detector implements DetectorInterface
     
     
     /**
-     * Provides a callback to validate each match found.
+     * Validate Canadian Social Insurance Number by checksum
+     * https://en.wikipedia.org/wiki/Social_Insurance_Number#Validation
      *
-     * @param $match
-     * @return Match
-     */
-    public function validateMatch($match)
-    {
-         
-        $validate = $this->ValidateSocialInsuranceNumber($match);
-
-        if (!$validate) {
-            return false;
-        }
-    
-        $result = new Match();
-        $result->setMatchType(self::class)
-        ->setMatchingContent($match);
-    
-        return $result;
-    }
-    
-     /**  
-     * Validate Social Insurance Number by checksum
-     *
-     * @param $sin string
+     * @param string
      * @return bool
      */
-    
-   
-    private  function ValidateSocialInsuranceNumber($sin) {
+     
+    protected function validate($match)
+    {
          // remove anything other than digits
-        $sin = preg_replace("/[^\d]/u", "", $sin);
+        $sin = preg_replace("/[^\d]/u", "", $match);
          
         // length check
         if (strlen($sin) != 9) {
@@ -74,7 +54,7 @@ class SocialInsuranceNumber extends Detector implements DetectorInterface
         }
         
         // _luhn function declared in globalcitizen/php-iban package, file php-iban.php
-        return _luhn($sin) ? false : true;
+        return (_luhn($sin) == 0) ? true : false;
     }
    
 }

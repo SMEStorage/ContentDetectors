@@ -31,7 +31,5 @@ class TaxpayerNumber extends Detector implements DetectorInterface
     {
         return '/\b(\d{5}[- ]?\d{5})\b/um';
     }
- 
    
-    
 }

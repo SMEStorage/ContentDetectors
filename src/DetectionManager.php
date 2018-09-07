@@ -21,7 +21,12 @@ class DetectionManager
         Detectors\Bank\IbanAccountNumber::class,
         Detectors\Bank\SwiftCode::class,
         
+        Detectors\Belgium\NationalNumber::class,
+        Detectors\Belgium\NationalRegisterNumber::class,
+         
         Detectors\Brazil\CpfNumber::class,
+        Detectors\Brazil\LegalEntityNumber::class,
+        Detectors\Brazil\NationalIdCard::class,
         
         Detectors\Canada\BritishColumbiaInsuranceNumber::class,
         Detectors\Canada\OntarioInsuranceNumber::class,
@@ -29,16 +34,26 @@ class DetectionManager
         Detectors\Canada\QuebecInsuranceNumber::class,
         Detectors\Canada\SocialInsuranceNumber::class,
         
+        Detectors\Chile\NationalIdNumber::class,
+        
         Detectors\China\Passport::class,
 
+        Detectors\Croatia\PersonalIdentificationNumber::class,
+        
+        Detectors\CzechRepublic\NationalIdCard::class,
+        
+        Detectors\Denmark\PersonalIdNumber::class,
+         
         Detectors\France\INSEENumber::class,
         Detectors\France\NationalIdCard::class,
-        Detectors\France\Password::class,
+        Detectors\France\Passport::class,
         
         Detectors\Germany\Passport::class,
         
         Detectors\India\PermanentAccountNumber::class,
         
+        Detectors\Israel\NationalIdNumber::class,
+         
         Detectors\Japan\Passport::class,
         
         Detectors\Mexico\NationalNumber::class,
@@ -51,11 +66,28 @@ class DetectionManager
         
         Detectors\Netherlands\IdNumber::class,
         
+        Detectors\NewZealand\HealthNumber::class,
+        
+        Detectors\Norway\NationalIdNumber::class,
+        
+        Detectors\Poland\NationalIdCard::class,
+        Detectors\Poland\NationalIdNumber::class,
+        Detectors\Poland\Passport::class,
+        
+        Detectors\Singapore\NationalIdCard::class,
+         
+        Detectors\SouthAfrica\NationalIdNumber::class,
+         
         Detectors\SouthKorea\Passport::class,
          
         Detectors\Spain\NieNumber::class,
         Detectors\Spain\NifNumber::class,
         Detectors\Spain\Passport::class,
+        
+        Detectors\Sweden\NationalIdNumber::class,
+        Detectors\Sweden\Passport::class,
+         
+        Detectors\Taiwan\NationalIdCard::class,
         
         Detectors\UK\DrivingLicense::class,
         Detectors\UK\NationalInsuranceNumber::class,
@@ -65,6 +97,7 @@ class DetectionManager
         Detectors\UK\PlateNumber::class,
         Detectors\UK\TaxpayerNumber::class,
          
+        Detectors\US\DeaNumber::class,
         Detectors\US\Ssn::class
    ];
 
@@ -143,6 +176,7 @@ class DetectionManager
 
             if (preg_match_all($detector->getRegularExpression(), $content, $matches)) {
                 $matches = array_unique($matches[0]);
+                $matches = array_values($matches);
             }
 
             $countMatches = count($matches);

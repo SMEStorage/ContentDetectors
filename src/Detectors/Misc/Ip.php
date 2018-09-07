@@ -32,24 +32,20 @@ class Ip extends Detector implements DetectorInterface
         return '/\b(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]?)\.((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){2}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9]))|(([0-9a-f]){1,4}(:([0-9a-f]){1,4}){1,7}))\b/um';
     }
 
+    
     /**
-     * Provides a callback to validate each match found.
+     * Validate IP
      *
-     * @param $match
-     * @return Match
+     * @param string
+     * @return bool
      */
-    public function validateMatch($match)
+     
+    protected function validate($match)
     {
-        $validate = filter_var($match, FILTER_VALIDATE_IP);
-
-        if (!$validate) {
-            return false;
-        }
-
-        $result = new Match();
-        $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
-        return $result;
+        $valid  = filter_var($match, FILTER_VALIDATE_IP);
+    
+        return $valid ? true : false;
     }
+     
+   
 }

@@ -1,0 +1,4 @@
+233792046 => invalid Israeli ID by checksum
+ 001200344  => valid Israeli ID 
+ 231740705  => valid Israeli ID
+ 339677395  => valid Israeli ID

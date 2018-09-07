@@ -40,7 +40,7 @@ class NationalRegisterNumber extends Detector implements DetectorInterface
      * https://nl.wikipedia.org/wiki/Rijksregisternummer
      * https://github.com/pear/Validate_BE/blob/master/Validate/BE.php
      *
-     * @param $match
+     * @param string
      * @return bool
      */
      protected function validate($match)
@@ -88,8 +88,8 @@ class NationalRegisterNumber extends Detector implements DetectorInterface
     /**
      * Validate National Register Number checksum
      *
-     * @param $validationNumber string
-     * @param $validationChecksum string
+     * @param string
+     * @param string
      * @return bool
      */
     

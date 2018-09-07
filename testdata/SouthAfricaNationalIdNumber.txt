@@ -1,0 +1,2 @@
+8001015009087 => valid
+8001015009081 => not  valid checksum

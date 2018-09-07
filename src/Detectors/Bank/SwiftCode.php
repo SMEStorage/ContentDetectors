@@ -47,27 +47,18 @@ class SwiftCode extends Detector implements DetectorInterface
         );
     }
     
-    
     /**
-     * Provides a callback to validate each match found.
+     * Validate Swift Codes
      *
-     * @param $match
-     * @return Match
+     * @param string
+     * @return bool
      */
-    public function validateMatch($match)
+     
+    protected function validate($match)
     {
-        $validate = SwiftCodeValidator::validate(preg_replace("/[^\dA-Z]/ui", "", $match));
+        $valid = SwiftCodeValidator::validate(preg_replace("/[^\dA-Z]/ui", "", $match));
     
-        if (!$validate) {
-            return false;
-        }
-    
-        $result = new Match();
-        $result->setMatchType(self::class)
-        ->setMatchingContent($match);
-    
-        return $result;
+        return $valid ? true : false;
     }
-    
-    
+   
 }

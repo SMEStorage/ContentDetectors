@@ -50,26 +50,18 @@ class IbanAccountNumber extends Detector implements DetectorInterface
     }
 
     /**
-     * Provides a callback to validate each match found.
-     *
-     * @param $match
-     * @return Match
+     * Validate IBAN Account Numbers
+     * 
+     * @param string
+     * @return bool
      */
-    public function validateMatch($match)
-    {   
-        $validate = $this->getValidator()->Verify(preg_replace("/[^\dA-Z]/ui", "", $match));
-          
-        if (!$validate) {
-            return false;
-        }
-
-        $result = new Match();
-        $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
-        return $result;
+     
+    protected function validate($match)
+    {
+        $valid = $this->getValidator()->Verify(preg_replace("/[^\dA-Z]/ui", "", $match));
+        
+        return $valid ? true : false;
     }
-    
     
     
 }

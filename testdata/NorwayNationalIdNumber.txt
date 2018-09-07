@@ -1,0 +1,2 @@
+29029900157 => no valid by date
+29029600013 => valid

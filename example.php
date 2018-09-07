@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../../../vendor/autoload.php';
 
 
 $content = '';
@@ -44,6 +44,8 @@ $content .= file_get_contents(__DIR__ . '/testdata/GermanyPassports.txt') . "\n"
 
 $content .= file_get_contents(__DIR__ . '/testdata/IndiaPermanentAccountNumbers.txt') . "\n";
 
+$content .= file_get_contents(__DIR__ . '/testdata/IsraelNationalIdNumber.txt') . "\n";
+
 $content .= file_get_contents(__DIR__ . '/testdata/JapanPassports.txt') . "\n";
 
 $content .= file_get_contents(__DIR__ . '/testdata/MaxicoPassports.txt') . "\n";
@@ -56,11 +58,28 @@ $content .= file_get_contents(__DIR__ . '/testdata/MiscIPs.txt') . "\n";
 
 $content .= file_get_contents(__DIR__ . '/testdata/NetherlandsIdNumbers.txt') . "\n";
 
+$content .= file_get_contents(__DIR__ . '/testdata/NewZealandHealthNumber.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/NorwayNationalIdNumber.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/PolandNationalIdCard.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/PolandNationalIdNumber.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/PolandPassport.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/SingaporeNationalIdCard.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/SouthAfricaNationalIdNumber.txt') . "\n";
+
 $content .= file_get_contents(__DIR__ . '/testdata/SouthKoreaPassports.txt') . "\n";
 
 $content .= file_get_contents(__DIR__ . '/testdata/SpainNieNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/SpainNifNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/SpainPassports.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/SwedenNationalIdNumber.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/SwedenPassports.txt') . "\n";
+
+$content .= file_get_contents(__DIR__ . '/testdata/TaiwanNationalIdNumber.txt') . "\n";
 
 $content .= file_get_contents(__DIR__ . '/testdata/UKDrivingLicenses.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/UKNationalInsuranceNumbers.txt') . "\n";
@@ -70,7 +89,10 @@ $content .= file_get_contents(__DIR__ . '/testdata/UKPhoneNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/UKPlateNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/UKTaxpayerNumbers.txt') . "\n";
 
+$content .= file_get_contents(__DIR__ . '/testdata/UsDEANumber.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/UsSSN.txt') . "\n";
+
+
 
 $manager = new \SME\ContentDetectors\DetectionManager();
 
@@ -101,5 +123,5 @@ foreach ($matches as $match) {
         $dataString = '(' . http_build_query($data, '', ', ') . ')';
     }
 
-    echo sprintf("Found '%s' '%s' %s\n", $match->getMatchType(), $match->getMatchingContent(), $dataString);
+    echo sprintf("Found '%s' '%s' %s\n", $type, $content, $dataString);
 }

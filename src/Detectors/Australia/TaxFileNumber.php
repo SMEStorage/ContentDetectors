@@ -30,29 +30,7 @@ class TaxFileNumber extends Detector implements DetectorInterface
     {
         return '/\b(\d{2,3}[- ]?\d{3}[- ]?\d{3})\b/um';
     }
-
-    /**
-     * Provides a callback to validate each match found.
-     *
-     * @param $match
-     * @return Match
-     */
-    public function validateMatch($match)
-    {
-        
-        $validate = $this->ValidateTaxFileNumber($match);
-        
-        if (!$validate) {
-            return false;
-        }
-
-        $result = new Match();
-        $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
-        return $result;
-    }
-    
+ 
     
     /**  
      * Validate TFN by checksum
@@ -60,15 +38,14 @@ class TaxFileNumber extends Detector implements DetectorInterface
      * https://github.com/sidorares/tfn/files/290459/Tax_file_number_.TFN._algorithm_8_digit.pdf
      *
      *
-     * @param $tfn string
+     * @param string
      * @return bool
      */
     
-    
-    private function ValidateTaxFileNumber($tfn)
-    {
+     protected function validate($match)
+     {
         // remove anything other than digits
-        $tfn = preg_replace("/[^\d]/u", "", $tfn);
+        $tfn = preg_replace("/[^\d]/u", "", $match);
         $weights = array();
         // check length is 9 digits
         if (strlen($tfn) == 9) {
@@ -104,7 +81,8 @@ class TaxFileNumber extends Detector implements DetectorInterface
             }
             return ($sum % 11) == 0;
         }
-         return false;
+        
+        return false;
     }
    
 }

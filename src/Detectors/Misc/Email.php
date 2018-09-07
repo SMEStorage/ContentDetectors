@@ -32,24 +32,19 @@ class Email extends Detector implements DetectorInterface
         return '/\b([\-\w\+](\.?[\-\w\+])*@\[?([0-9a-z](\-?\_?[0-9a-z])*\.)+[a-z0-9\-]{2,64}\]?)/umi';
     }
 
+    
     /**
-     * Provides a callback to validate each match found.
+     * Validate email
      *
-     * @param $match
-     * @return Match
+     * @param string
+     * @return bool
      */
-    public function validateMatch($match)
+     
+    protected function validate($match)
     {
-        $validate = filter_var($match, FILTER_VALIDATE_EMAIL);
-
-        if (!$validate) {
-            return false;
-        }
-
-        $result = new Match();
-        $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
-        return $result;
+       $valid  = filter_var($match, FILTER_VALIDATE_EMAIL);
+      
+       return $valid ? true : false;
     }
+   
 }

@@ -51,28 +51,23 @@ class NhsNumber extends Detector implements DetectorInterface
     }
 
     /**
-     * Provides a callback to validate each match found.
+     * Validate UK NHS Numbers
      *
-     * @param $match
-     * @return Match
+     * @param string
+     * @return bool
      */
-    public function validateMatch($match)
+    protected function validate($match)
     {
-        $validate = false;
+        $valid = false;
         try {
-            $validate = $this->getValidator()->validate($match);
+            $valid = $this->getValidator()->validate($match);
         } catch (\Exception $ex) {
-             $validate = false;
+             $valid = false;
         }
-        if (! $validate) {
-            return false;
-        }
-
-        $result = new Match();
-        $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
-        return $result;
+        
+        return $valid ? true : false;
     }
+    
+    
     
 }

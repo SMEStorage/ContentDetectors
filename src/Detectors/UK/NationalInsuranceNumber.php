@@ -34,24 +34,16 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
     }
 
     /**
-     * Provides a callback to validate each match found.
+     * Validate UK National Insurance Numbers
      *
-     * @param $match
-     * @return Match
+     * @param string
+     * @return bool
      */
-    public function validateMatch($match)
+    protected function validate($match)
     {
-
-        $validate = NationalInsuranceNumberValidator::validate($match);
-
-        if (!$validate) {
-            return false;
-        }
-
-        $result = new Match();
-        $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
-        return $result;
+        $valid = NationalInsuranceNumberValidator::validate($match);
+        
+        return $valid ? true : false;
     }
+   
 }

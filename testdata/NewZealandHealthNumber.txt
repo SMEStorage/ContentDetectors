@@ -1,0 +1,4 @@
+CGC2720 => valid
+EPT6335 => valid
+EIT6335 => not valid (symbol I)
+

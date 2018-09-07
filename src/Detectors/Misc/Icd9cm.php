@@ -43,7 +43,6 @@ class Icd9cm extends Detector implements DetectorInterface
     {
         return array(
             new DetectorNextRule('/\b([EV]?\d{3}(\.?\d{0,5})?)\b/umi', 'ICD 9-CM Code sub-rule')
-             
         );
     }
     

@@ -8,7 +8,7 @@ use SME\ContentDetectors\Match;
 /**
  * Class NationalNumber
  *
- * Detector implementation for Denmark Personal Identification Number - CPR-nummer
+ * Detector implementation for Danish Personal Identification Number - CPR-nummer
  * https://en.wikipedia.org/wiki/Personal_identification_number_(Denmark)
  *
  * @package SME\ContentDetectors\Detectors\Denmark
@@ -35,9 +35,9 @@ class PersonalIdNumber extends Detector implements DetectorInterface
     
 
     /**
-     * Validate Personal Identification Number by date
+     * Validate Danish Personal Identification Number by date
      *
-     * @param $match
+     * @param string
      * @return bool
      */
     protected function validate($match)
@@ -83,7 +83,7 @@ class PersonalIdNumber extends Detector implements DetectorInterface
         
        
         //day validation and day must be less than today
-        if (checkdate($month, $day, $year) && (mktime(0, 0, 0, $month, $day, $year) < time())) {
+        if (checkdate($month, $day, $year) && (gmmktime(0, 0, 0, $month, $day, $year) < time())) {
             return true;
         }
         

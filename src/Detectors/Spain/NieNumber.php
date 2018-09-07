@@ -50,24 +50,16 @@ class NieNumber extends Detector implements DetectorInterface
     }
 
     /**
-     * Provides a callback to validate each match found.
+     * Validate Spanish Nie Numbers
      *
-     * @param $match
-     * @return Match
+     * @param string
+     * @return bool
      */
-    public function validateMatch($match)
+    protected function validate($match)
     {
-        $validate =  $this->getValidator()->isValidNie($match);
-
-        if (!$validate) {
-            return false;
-        }
-
-        $result = new Match();
-        $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
-        return $result;
+        $valid = $this->getValidator()->isValidNie($match);
+ 
+        return $valid ? true : false;
     }
     
    

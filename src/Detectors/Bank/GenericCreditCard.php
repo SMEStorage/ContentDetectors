@@ -36,14 +36,14 @@ class GenericCreditCard extends Detector implements DetectorInterface
     /**
      * Provides a callback to validate each match found.
      *
-     * @param $match
+     * @param string
      * @return false|Match
      */
     public function validateMatch($match)
     {
         $info = GenericCreditCardValidator::validCreditCard($match);
 
-        if(is_array($info) && array_key_exists('valid', $info) && $info['valid'] !== true) {
+        if (! (is_array($info) && array_key_exists('valid', $info) && ($info['valid'] === true))) {
             return false;
         }
 

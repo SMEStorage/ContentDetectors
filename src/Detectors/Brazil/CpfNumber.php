@@ -36,7 +36,7 @@ class CpfNumber extends Detector implements DetectorInterface
     
     /** based on http://search.cpan.org/dist/Business-BR-Ids/lib/Business/BR/CPF.pm code
      * 
-     * @param $cpfNumber
+     * @param string
      * @return bool
      */
     protected function validate($match)

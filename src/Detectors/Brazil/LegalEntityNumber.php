@@ -36,13 +36,12 @@ class LegalEntityNumber extends Detector implements DetectorInterface
     
     /** based on https://metacpan.org/pod/distribution/Business-BR-Ids/lib/Business/BR/CNPJ.pm
      * 
-     * @param $match
+     * @param string
      * @return bool
      */
      protected function validate($match)
      {
-    
-         
+          
         $cnpjNumber = preg_replace("/[^\d]/u", "", $match);
         
         // Check for 14

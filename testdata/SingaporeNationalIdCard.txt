@@ -1,0 +1,2 @@
+S0000001I => special and  valid
+S0605001B => invalid

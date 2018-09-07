@@ -33,37 +33,15 @@ class IdNumber extends Detector implements DetectorInterface
     }
 
     /**
-     * Provides a callback to validate each match found.
-     *
-     * @param $match
-     * @return Match
-     */
-    public function validateMatch($match)
-    {
-        $validate = $this->isValidIdNumber($match);
-
-        if (!$validate) {
-            return false;
-        }
-
-        $result = new Match();
-        $result->setMatchType(self::class)
-            ->setMatchingContent($match);
-
-        return $result;
-    }
-    
-    
-    /**
-     * validate Netherlandian Id Number
+     * Validate Netherlandian Id Numbers by checksum
      *
      * @param string
      * @return bool
-     *
      */
-    private function isValidIdNumber($value)
+     
+    protected function validate($match)
     {
-        $value = preg_replace("/[^\d]/u", "", $value);
+        $value = preg_replace("/[^\d]/u", "", $match);
         
         // Check for 8 or 9 digits
         $length = strlen($value);

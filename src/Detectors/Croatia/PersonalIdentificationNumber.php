@@ -8,7 +8,7 @@ use SME\ContentDetectors\Match;
 /**
  * Class PersonalIdentificationNumber
  *
- * Detector implementation for Croatia Personal Identification Number - OBI
+ * Detector implementation for Croatian Personal Identification Number - OBI
  * https://en.wikipedia.org/wiki/Personal_identification_number_(Croatia)
  *
  * @package SME\ContentDetectors\Detectors\Croatia
@@ -34,11 +34,12 @@ class PersonalIdentificationNumber extends Detector implements DetectorInterface
     }
 
     /**
+     * Validate Croatian Personal Identification Number
      * https://en.wikipedia.org/wiki/Personal_identification_number_(Croatia)#Characteristics
      * standard ISO 7064, module 11.10
      * based on code https://github.com/mmandaric/ISO7064-MOD-11-10/blob/master/kont-zn1.c
      *
-     * @param $match
+     * @param string
      * @return bool
      */
     protected function validate($match)

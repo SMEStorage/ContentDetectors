@@ -1,0 +1,2 @@
+XGG765762 => valid
+ABC123456 => not  valid

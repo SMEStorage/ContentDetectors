@@ -8,7 +8,7 @@ use SME\ContentDetectors\Match;
 /**
  * Class NationalIdCard
  *
- * Detector implementation for Brazilian National ID Card (RG - Registro Geral, Carteira de identidade)
+ * Detector implementation for Brazilian National Identification Card (RG - Registro Geral, Carteira de identidade)
  * https://en.wikipedia.org/wiki/Brazilian_identity_card
  *
  * @package SME\ContentDetectors\Detectors\Brazil
@@ -32,6 +32,5 @@ class NationalIdCard extends Detector implements DetectorInterface
     {
         return '/\b(\d{2}[\- \.]?\d{3}[\- \.]?\d{3}[\- \.]?\d{2}[\- \.]?\d?)\b/um';
     }
-
-    
+  
 }

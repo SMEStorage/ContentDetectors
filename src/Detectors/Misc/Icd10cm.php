@@ -43,7 +43,6 @@ class Icd10cm extends Detector implements DetectorInterface
     {
         return array(
             new DetectorNextRule('/\b([ABCDEFGHIJKLMNOPQRSTVYZU]{1}\d{2}(\.?\d{0,5})?)\b/umi', 'ICD 10-CM Code sub-rule')
-             
         );
     }
     
