@@ -20,7 +20,7 @@ class HealthNumber extends Detector implements DetectorInterface
      * uniq code of detector
      * @var string
      */
-    protected $code  = 'nzHelthNumber';
+    protected $code  = 'nzHealthNumber';
     
     /**
      * Returns the regular expression used to initially detect the content
