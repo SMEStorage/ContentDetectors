@@ -8,7 +8,7 @@ use SME\ContentDetectors\Match;
 /**
  * Class Ip
  *
- * Detector implementation for IPs
+ * Detector implementation for IP addresses
  *
  * @package SME\ContentDetectors\Detectors\Misc
  * @author vanja K. <vanja@storagemadeeasy.com>

@@ -8,7 +8,7 @@ use SME\ContentDetectors\Match;
 /**
  * Class NationalIdCard
  *
- * Detector implementation for Singapore National Registration Identity Card (NRIC) Number
+ * Detector implementation for Singaporean National Registration Identity Card (NRIC) Number
  * https://en.wikipedia.org/wiki/National_Registration_Identity_Card
  *
  * @package SME\ContentDetectors\Detectors\Singapore
@@ -35,7 +35,7 @@ class NationalIdCard extends Detector implements DetectorInterface
     
  
     /**
-     * Validate Singapore National Registration Identity Card (NRIC) Number
+     * Validate Singaporean National Registration Identity Card (NRIC) Number
      * https://en.wikipedia.org/wiki/National_Registration_Identity_Card#Structure_of_the_NRIC_number/FIN
      * http://www.ngiam.net/NRIC/img011.jpg
      *

@@ -8,7 +8,7 @@ use SME\ContentDetectors\Match;
 /**
  * Class NationalIdCard
  *
- * Detector implementation for Taiwan National ID Card Number - ROC ID
+ * Detector implementation for Taiwanese National ID Card Number - ROC ID
  * https://en.wikipedia.org/wiki/National_identification_number#Taiwan
  *
  * @package SME\ContentDetectors\Detectors\Taiwan
@@ -35,7 +35,7 @@ class NationalIdCard extends Detector implements DetectorInterface
     
  
     /**
-     * Validate Taiwan National ID Card Number
+     * Validate Taiwanese National ID Card Number
      * https://wilhelmliao.wordpress.com/2011/05/09/taiwan-identity-number-validation/
      *
      * @param string

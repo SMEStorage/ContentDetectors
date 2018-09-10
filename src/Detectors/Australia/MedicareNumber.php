@@ -8,7 +8,7 @@ use SME\ContentDetectors\Match;
 /**
  * Class MedicareNumber
  *
- * Detector implementation for Australian Medicare Numbers
+ * Detector implementation for Australian Medicare Account Numbers
  *
  * @package SME\ContentDetectors\Detectors\Australia
  * @author vanja K. <vanja@storagemadeeasy.com>

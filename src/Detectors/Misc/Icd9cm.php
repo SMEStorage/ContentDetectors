@@ -9,7 +9,7 @@ use SME\ContentDetectors\Match;
 /**
  * Class Icd9cm
  *
- * Detector implementation for ICD-9 CM codes
+ * Detector implementation for International Classification of Diseases - ICD 9-CM Code
  *
  * @package SME\ContentDetectors\Detectors\Misc
  * @author vanja K. <vanja@storagemadeeasy.com>

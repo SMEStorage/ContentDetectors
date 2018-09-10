@@ -8,7 +8,7 @@ use SME\ContentDetectors\Match;
 /**
  * Class Email
  *
- * Detector implementation for Emails
+ * Detector implementation for Email addresses
  *
  * @package SME\ContentDetectors\Detectors\Misc
  * @author vanja K. <vanja@storagemadeeasy.com>
