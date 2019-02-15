@@ -22,13 +22,19 @@
       }
    ],
    "require":{
+      "bystones/nhs-validator":"dev-master",
+      "cmpayments/iban":"dev-master",
       "inacho/php-credit-card-validator":"^1.0",
-      "ronanguilloux/isocodes":"^2.1",
-      "cds/nhs-number-validation":"1.0.2",
-      "globalcitizen/php-iban":"*",
       "giggsey/libphonenumber-for-php":"^8.9",
       "mpijierro/identity":"dev-master" 
    },
+   "repositories":[
+      {
+          "type": "vcs",
+          "url": "https://github.com/bystones/nhs-validator"
+      } 
+   ],
+   
    "autoload":{
       "psr-4":{
          "SME\\ContentDetectors\\":"src/"
