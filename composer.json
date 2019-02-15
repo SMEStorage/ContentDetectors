@@ -25,8 +25,7 @@
       "bystones/nhs-validator":"dev-master",
       "cmpayments/iban":"dev-master",
       "inacho/php-credit-card-validator":"^1.0",
-      "giggsey/libphonenumber-for-php":"^8.9",
-      "mpijierro/identity":"dev-master" 
+      "giggsey/libphonenumber-for-php":"^8.9" 
    },
    "repositories":[
       {
