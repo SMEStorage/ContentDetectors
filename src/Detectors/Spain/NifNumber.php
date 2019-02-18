@@ -4,7 +4,8 @@ namespace SME\ContentDetectors\Detectors\Spain;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use \MPijierro\Identity\Identity as NifNumberValidator;
+use Skilla\ValidatorCifNifNie\Validator as NifNumberValidator;
+use Skilla\ValidatorCifNifNie\Generator as NifNumberGenerator;
 
 
 /**
@@ -34,7 +35,7 @@ class NifNumber extends Detector implements DetectorInterface
     
     protected function getValidator() {
         if (! $this->_validator) {
-            $this->_validator = new NifNumberValidator();
+            $this->_validator = new NifNumberValidator(new NifNumberGenerator());
         }
     
         return $this->_validator;
@@ -58,7 +59,7 @@ class NifNumber extends Detector implements DetectorInterface
      */
     protected function validate($match)
     {
-        $valid = $this->getValidator()->isValidNif($match);
+        $valid = $this->getValidator()->isValidNIF($match);
     
         return $valid ? true : false;
     }

@@ -23,6 +23,7 @@
    ],
    "require":{
       "bystones/nhs-validator":"dev-master",
+      "odan/luhn":"dev-master",
       "cmpayments/iban":"dev-master",
       "inacho/php-credit-card-validator":"^1.0",
       "giggsey/libphonenumber-for-php":"^8.9" 
@@ -31,6 +32,10 @@
       {
           "type": "vcs",
           "url": "https://github.com/bystones/nhs-validator"
+      },
+      {
+         "type":"git",
+         "url":"https://github.com/odan/luhn"
       } 
    ],
    

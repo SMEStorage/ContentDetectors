@@ -4,7 +4,7 @@ namespace SME\ContentDetectors\Detectors\UK;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use IsoCodes\PhoneNumber as PhoneNumberValidator;
+use libphonenumber\PhoneNumberUtil;
 
 /**
  * Class UKPhoneNumber
@@ -41,9 +41,16 @@ class PhoneNumber extends Detector implements DetectorInterface
      */
     protected function validate($match)
     {
-       $valid  = PhoneNumberValidator::validate($match, 'GB');
-    
-        return $valid ? true : false;
+        try {
+            $phoneUtil = PhoneNumberUtil::getInstance();
+            $phoneObj = $phoneUtil->parse($match, 'GB');
+            
+            return $phoneUtil->isValidNumber($phoneObj);
+        } catch (\Exception $ex) {
+            
+        }
+        
+        return false;
     }
     
      

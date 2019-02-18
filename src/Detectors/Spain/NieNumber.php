@@ -4,8 +4,8 @@ namespace SME\ContentDetectors\Detectors\Spain;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use \MPijierro\Identity\Identity as NieNumberValidator;
-
+use Skilla\ValidatorCifNifNie\Validator as NieNumberValidator;
+use Skilla\ValidatorCifNifNie\Generator as NieNumberGenerator;
 /**
  * Class NieNumber
  *
@@ -33,7 +33,7 @@ class NieNumber extends Detector implements DetectorInterface
     
     protected function getValidator() {
         if (! $this->_validator) {
-            $this->_validator = new NieNumberValidator();
+            $this->_validator = new NieNumberValidator(new NieNumberGenerator());
         }
     
         return $this->_validator;
@@ -57,7 +57,7 @@ class NieNumber extends Detector implements DetectorInterface
      */
     protected function validate($match)
     {
-        $valid = $this->getValidator()->isValidNie($match);
+        $valid = $this->getValidator()->isValidNIE($match);
  
         return $valid ? true : false;
     }

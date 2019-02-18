@@ -4,6 +4,8 @@ namespace SME\ContentDetectors\Detectors\Sweden;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
+use SME\ContentDetectors\Validators\Luhn as LuhnAlgorithm;
+
 
 /**
  * Class NationalIdNumber
@@ -22,6 +24,17 @@ class NationalIdNumber extends Detector implements DetectorInterface
      */
     
     protected $code  = 'seNationalIdNumber';
+    
+    protected $_validator = null;
+    
+    
+    protected function getValidator() {
+        if (! $this->_validator) {
+            $this->_validator = new LuhnAlgorithm();
+        }
+    
+        return $this->_validator;
+    }
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -56,7 +69,7 @@ class NationalIdNumber extends Detector implements DetectorInterface
                 $nationalIdNumber = substr($nationalIdNumber, -10);
             }
             
-            return (_luhn($nationalIdNumber) == 0) ? true : false;
+            return ($this->getValidator()->calculate($nationalIdNumber) == 0) ? true : false;
         }
         
         return false;

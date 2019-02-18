@@ -4,6 +4,7 @@ namespace SME\ContentDetectors\Detectors\Canada;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
+use SME\ContentDetectors\Validators\Luhn as LuhnAlgorithm;
 
 
 /**
@@ -23,6 +24,18 @@ class SocialInsuranceNumber extends Detector implements DetectorInterface
      */
     
     protected $code  = 'caSin';
+    
+    protected $_validator = null;
+    
+    
+    protected function getValidator() {
+        if (! $this->_validator) {
+            $this->_validator = new LuhnAlgorithm();
+        }
+    
+        return $this->_validator;
+    }
+    
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -52,9 +65,8 @@ class SocialInsuranceNumber extends Detector implements DetectorInterface
         if (strlen($sin) != 9) {
             return false;
         }
-        
-        // _luhn function declared in globalcitizen/php-iban package, file php-iban.php
-        return (_luhn($sin) == 0) ? true : false;
+         
+        return ($this->getValidator()->calculate($sin) == 0) ? true : false;
     }
    
 }

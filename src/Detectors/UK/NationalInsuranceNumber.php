@@ -4,7 +4,6 @@ namespace SME\ContentDetectors\Detectors\UK;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use IsoCodes\Uknin as NationalInsuranceNumberValidator;
 
 /**
  * Class NationalInsuranceNumber
@@ -32,18 +31,5 @@ class NationalInsuranceNumber extends Detector implements DetectorInterface
     {
         return '/\b((?!BG|GB|NK|KN|TN|NT|ZZ)[ABCEGHJ-PRSTW-Z][ABCEGHJ-NPRSTW-Z]?\s*\d{2}\s*\d{2}\s*\d{2}\s*[A-D])\b/umi';
     }
-
-    /**
-     * Validate UK National Insurance Numbers
-     *
-     * @param string
-     * @return bool
-     */
-    protected function validate($match)
-    {
-        $valid = NationalInsuranceNumberValidator::validate($match);
-        
-        return $valid ? true : false;
-    }
-   
+ 
 }

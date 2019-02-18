@@ -4,6 +4,7 @@ namespace SME\ContentDetectors\Detectors\SouthAfrica;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
+use SME\ContentDetectors\Validators\Luhn as LuhnAlgorithm;
 
 /**
  * Class NationalIdNumber
@@ -22,6 +23,17 @@ class NationalIdNumber extends Detector implements DetectorInterface
      */
     
     protected $code  = 'zaNationalIdNumber';
+    
+    protected $_validator = null;
+    
+    
+    protected function getValidator() {
+        if (! $this->_validator) {
+            $this->_validator = new LuhnAlgorithm();
+        }
+    
+        return $this->_validator;
+    }
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -51,9 +63,8 @@ class NationalIdNumber extends Detector implements DetectorInterface
         }
         
         if ($this->validateNationalIdNumberDate($nationalIdNumber)) {
-            // _luhn function declared in globalcitizen/php-iban package, file php-iban.php
-            
-            $cheknum = _luhn(substr($nationalIdNumber, 0, 12));
+             
+            $cheknum = $this->getValidator()->calculate(substr($nationalIdNumber, 0, 12));
             
             if (intval($nationalIdNumber[12]) == $cheknum) {
                 return true;

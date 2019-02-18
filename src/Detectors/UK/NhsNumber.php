@@ -4,7 +4,7 @@ namespace SME\ContentDetectors\Detectors\UK;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\Match;
-use \CloudDataService\NHSNumberValidation\Validator as NhsNumberValidator;
+use ByStones\NHSNumber as NHSNumberValidator;
 
 /**
  * Class NhsNumber
@@ -23,22 +23,7 @@ class NhsNumber extends Detector implements DetectorInterface
     
     protected $code  = 'ukNhsNumber';
     
-    /**
-     * validator
-     * @var NieNumberValidator
-     */
-    
-    protected $_validator = null;
-    
-    
-    protected function getValidator() {
-        if (! $this->_validator) {
-            $this->_validator = new NhsNumberValidator();
-        }
-    
-        return $this->_validator;
-    }
-    
+   
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -58,16 +43,9 @@ class NhsNumber extends Detector implements DetectorInterface
      */
     protected function validate($match)
     {
-        $valid = false;
-        try {
-            $valid = $this->getValidator()->validate($match);
-        } catch (\Exception $ex) {
-             $valid = false;
-        }
+        $nhs = new NHSNumberValidator($match);
         
-        return $valid ? true : false;
+        return $nhs->isValid();
     }
-    
-    
     
 }

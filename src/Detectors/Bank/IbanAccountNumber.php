@@ -23,21 +23,7 @@ class IbanAccountNumber extends Detector implements DetectorInterface
     
     protected $code  = 'bankIban';
     
-    /**
-     * validator
-     * @var IbanAccountNumberValidator
-     */
-    
-    protected $_validator = null;
-    
-    
-    protected function getValidator() {
-        if (! $this->_validator) {
-            $this->_validator = new IbanAccountNumberValidator();
-        }
-        
-        return $this->_validator;
-    }
+   
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -46,7 +32,7 @@ class IbanAccountNumber extends Detector implements DetectorInterface
      */
     public function getRegularExpression()
     {
-        return '/\b([a-zA-Z]{2}[0-9]{2}[ -]?([a-zA-Z0-9]{4}[ -]?){3,6}[a-zA-Z0-9]{0,4})\b/uim';
+        return '/\b([a-z]{2}[0-9]{2}[ -]?([a-z0-9]{4}[ -]?){3,6}[a-z0-9]{0,4})\b/uim';
     }
 
     /**
@@ -58,9 +44,9 @@ class IbanAccountNumber extends Detector implements DetectorInterface
      
     protected function validate($match)
     {
-        $valid = $this->getValidator()->Verify(preg_replace("/[^\dA-Z]/ui", "", $match));
+        $validator = new \CMPayments\IBAN(preg_replace("/[^\dA-Z]/ui", "", $match));
         
-        return $valid ? true : false;
+        return $validator->validate();
     }
     
     
