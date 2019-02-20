@@ -32,7 +32,7 @@
       {
           "type": "vcs",
           "url": "https://github.com/bystones/nhs-validator"
-      } 
+      }
    ],
    
    "autoload":{
