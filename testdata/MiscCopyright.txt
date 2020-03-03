@@ -1,0 +1,4 @@
+Copyright 12Test1 => valid
+Copyrights Test44 => valid
+Copyright # => not valid
+ 

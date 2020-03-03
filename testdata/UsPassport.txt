@@ -1,0 +1,3 @@
+AB890001 => valid
+7584HJ780 => valid
+c34854858 => valid

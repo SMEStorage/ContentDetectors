@@ -51,6 +51,12 @@ $content .= file_get_contents(__DIR__ . '/testdata/JapanPassports.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/MaxicoPassports.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/MexicoNationalNumbers.txt') . "\n";
 
+$content .= file_get_contents(__DIR__ . '/testdata/MiscCoordinates.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/MiscCopyright.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/MiscCusip.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/MiscDate.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/MiscPotentialPasswords.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/MiscSwearword.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/MiscEmails.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/MiscICD-10CMCodes.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/MiscICD-9CMCodes.txt') . "\n";
@@ -90,6 +96,8 @@ $content .= file_get_contents(__DIR__ . '/testdata/UKPlateNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/UKTaxpayerNumbers.txt') . "\n";
 
 $content .= file_get_contents(__DIR__ . '/testdata/UsDEANumber.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/UsZip.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/UsPassport.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/UsSSN.txt') . "\n";
 
 

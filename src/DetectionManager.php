@@ -19,8 +19,9 @@ class DetectionManager
         
         Detectors\Bank\GenericCreditCard::class,
         Detectors\Bank\IbanAccountNumber::class,
+        Detectors\Bank\RoutingTransitNumber::class,
         Detectors\Bank\SwiftCode::class,
-        
+         
         Detectors\Belgium\NationalNumber::class,
         Detectors\Belgium\NationalRegisterNumber::class,
          
@@ -58,12 +59,18 @@ class DetectionManager
         
         Detectors\Mexico\NationalNumber::class,
         Detectors\Mexico\Passport::class,
-         
+          
+        Detectors\Misc\Copyright::class,
+        Detectors\Misc\Coordinates::class,
+        Detectors\Misc\Cusip::class,
+        Detectors\Misc\Date::class,
         Detectors\Misc\Email::class,
         Detectors\Misc\Icd10cm::class,
         Detectors\Misc\Icd9cm::class,
         Detectors\Misc\Ip::class,
-        
+        Detectors\Misc\PotentialPassword::class,
+        Detectors\Misc\Swearword::class,
+         
         Detectors\Netherlands\IdNumber::class,
         
         Detectors\NewZealand\HealthNumber::class,
@@ -97,9 +104,12 @@ class DetectionManager
         Detectors\UK\PlateNumber::class,
         Detectors\UK\TaxpayerNumber::class,
          
+        Detectors\US\DrivingLicenseNumber::class,
         Detectors\US\DeaNumber::class,
-        Detectors\US\Ssn::class
-   ];
+        Detectors\US\Ssn::class,
+        Detectors\US\Zip::class,
+        Detectors\US\Passport::class
+    ];
 
     public function enableDetector($type)
     {
@@ -152,7 +162,7 @@ class DetectionManager
             }
         }
         
-        return $detectorClass;
+        return $detectorClassResult;
     }
     
     /**

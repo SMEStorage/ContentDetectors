@@ -1,0 +1,7 @@
+    Apple Inc.: 037833100 =>  valid
+    Cisco Systems: 17275R102 =>  valid
+    Google Inc.: 38259P508 =>  valid
+    Microsoft Corporation: 594918104 =>  valid
+    Oracle Corporation: 68389X105 =>  valid
+    
+    68389X109 =>  not valid
