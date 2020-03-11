@@ -102,6 +102,7 @@ class DetectionManager
         Detectors\UK\Passport::class,
         Detectors\UK\PhoneNumber::class,
         Detectors\UK\PlateNumber::class,
+        Detectors\UK\PostCode::class,
         Detectors\UK\TaxpayerNumber::class,
          
         Detectors\US\DrivingLicenseNumber::class,

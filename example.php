@@ -93,6 +93,7 @@ $content .= file_get_contents(__DIR__ . '/testdata/UKNHSNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/UKPassports.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/UKPhoneNumbers.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/UKPlateNumbers.txt') . "\n";
+$content .= file_get_contents(__DIR__ . '/testdata/UKPostCodes.txt') . "\n";
 $content .= file_get_contents(__DIR__ . '/testdata/UKTaxpayerNumbers.txt') . "\n";
 
 $content .= file_get_contents(__DIR__ . '/testdata/UsDEANumber.txt') . "\n";
