@@ -1,6 +1,6 @@
 {
    "name":"storagemadeeasy/contentdetectors",
-   "version":"1.0",
+   "version":"1.1",
    "type":"library",
    "description":"Detectors type of content in strings",
    "keywords":[
