@@ -18,7 +18,6 @@ class Copyright extends Detector implements DetectorInterface
      * uniq code of detector
      * @var string
      */
-    
     protected $code  = 'copyright';
      
     /**
@@ -28,8 +27,6 @@ class Copyright extends Detector implements DetectorInterface
      */
     public function getRegularExpression()
     {
-         
-        return '/\b(Copyrights?\+s\w+)\b/uim';
+        return '/(\bcopyrights?\b)|(\bcopyrighted\b)|(&copy;)|(Ⓒ)/uim';
     }
-
 }
