@@ -1,7 +1,7 @@
 <?php
 namespace SME\ContentDetectors\Detectors;
 
-use SME\ContentDetectors\Match;
+use SME\ContentDetectors\DataMatch;
 
 /**
  * Interface DetectorInterface
@@ -23,7 +23,7 @@ interface DetectorInterface
      * Provides a callback to validate each match found.
      *
      * @param $match
-     * @return false|Match
+     * @return false|DataMatch
      */
     public function validateMatch($match);
 }

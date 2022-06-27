@@ -3,7 +3,7 @@ namespace SME\ContentDetectors\Detectors\UK;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
-use SME\ContentDetectors\Match;
+use SME\ContentDetectors\DataMatch;
 use ByStones\NHSNumber as NHSNumberValidator;
 
 /**

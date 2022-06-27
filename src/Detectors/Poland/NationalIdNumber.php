@@ -3,7 +3,7 @@ namespace SME\ContentDetectors\Detectors\Poland;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
-use SME\ContentDetectors\Match;
+use SME\ContentDetectors\DataMatch;
 
 /**
  * Class NationalIdNumber

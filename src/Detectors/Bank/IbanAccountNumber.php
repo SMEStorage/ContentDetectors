@@ -3,7 +3,7 @@ namespace SME\ContentDetectors\Detectors\Bank;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
-use SME\ContentDetectors\Match;
+use SME\ContentDetectors\DataMatch;
 use \IBAN as IbanAccountNumberValidator;
 
 /**

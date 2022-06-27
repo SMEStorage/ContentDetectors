@@ -3,7 +3,7 @@ namespace SME\ContentDetectors\Detectors\Brazil;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
-use SME\ContentDetectors\Match;
+use SME\ContentDetectors\DataMatch;
 
 /**
  * Class NationalIdCard
