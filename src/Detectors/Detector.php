@@ -1,7 +1,7 @@
 <?php
 namespace SME\ContentDetectors\Detectors;
 
-use SME\ContentDetectors\Match;
+use SME\ContentDetectors\DataMatch;
 
 
 /**
@@ -49,7 +49,7 @@ class Detector
      * Provides a callback to validate each match found.
      *
      * @param $match
-     * @return Match
+     * @return DataMatch
      */
     public function validateMatch($match)
     {
@@ -64,7 +64,7 @@ class Detector
             return false;
         }
           
-        $result = new Match();
+        $result = new DataMatch();
         $result->setMatchType(static::class)
         ->setMatchingContent($match);
     

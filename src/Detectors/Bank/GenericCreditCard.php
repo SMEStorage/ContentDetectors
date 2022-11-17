@@ -3,7 +3,7 @@ namespace SME\ContentDetectors\Detectors\Bank;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
-use SME\ContentDetectors\Match;
+use SME\ContentDetectors\DataMatch;
 use Inacho\CreditCard as GenericCreditCardValidator;
 
 /**
@@ -37,7 +37,7 @@ class GenericCreditCard extends Detector implements DetectorInterface
      * Provides a callback to validate each match found.
      *
      * @param string
-     * @return false|Match
+     * @return false|DataMatch
      */
     public function validateMatch($match)
     {
@@ -47,7 +47,7 @@ class GenericCreditCard extends Detector implements DetectorInterface
             return false;
         }
 
-        $result = new Match();
+        $result = new DataMatch();
         $result->setMatchType(self::class)
             ->setMatchingContent($match)
             ->setData([

@@ -19,7 +19,7 @@ class MatchCollection implements Iterator
     private $position = 0;
 
     /**
-     * Array of Match instances
+     * Array of DataMatch instances
      * @var array
      */
     private $matches = [];
@@ -83,9 +83,9 @@ class MatchCollection implements Iterator
     /**
      * Adds the match to the list of existing matches
      *
-     * @param Match $match
+     * @param DataMatch $match
      */
-    public function addMatch(Match $match)
+    public function addMatch(DataMatch $match)
     {
         $this->matches []= $match;
     }

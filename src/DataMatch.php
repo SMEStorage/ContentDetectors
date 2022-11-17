@@ -2,14 +2,15 @@
 namespace SME\ContentDetectors;
 
 /**
- * Class Match
+ * Class DataMatch
+ * Previously named Match
  *
  * Class that represents an detected match in the content.
  *
  * @package SME\ContentDetectors
  * @author James Norman <james@storagemadeeasy.com>
  */
-class Match
+class DataMatch
 {
     /**
      * @var string

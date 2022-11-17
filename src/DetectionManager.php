@@ -199,11 +199,11 @@ class DetectionManager
 
                 $validateResult = $detector->validateMatch($matches[$i]);
 
-                if (!($validateResult instanceof Match)) {
+                if (!($validateResult instanceof DataMatch)) {
                     continue;
                 }
 
-                // Add this to the Match collection
+                // Add this to the DataMatch collection
                 $matchCollection->addMatch($validateResult);
             }
 

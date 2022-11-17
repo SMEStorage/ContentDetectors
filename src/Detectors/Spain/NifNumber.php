@@ -3,7 +3,7 @@ namespace SME\ContentDetectors\Detectors\Spain;
 
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
-use SME\ContentDetectors\Match;
+use SME\ContentDetectors\DataMatch;
 use Skilla\ValidatorCifNifNie\Validator as NifNumberValidator;
 use Skilla\ValidatorCifNifNie\Generator as NifNumberGenerator;
 
