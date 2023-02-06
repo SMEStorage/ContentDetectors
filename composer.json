@@ -14,17 +14,12 @@
          "name":"James Norman",
          "email":"james@storagemadeeasy.com",
          "homepage":"https://github.com/SMEStorage"
-      },
-      {
-         "name":"Ivan Kydysiuk",
-         "email":"vanja@storagemadeeasy.com",
-         "homepage":"https://github.com/SMEStorage"
       }
    ],
    "require":{
       "bystones/nhs-validator":"dev-master",
       "cmpayments/iban":"dev-master",
-      "inacho/php-credit-card-validator":"^1.0",
+      "pear/validate_finance_creditcard": "dev-master",
       "giggsey/libphonenumber-for-php":"^8.9",
       "skilla/validator-cif-nif-nie": "1.0.6",
       "dprmc/cusip": "dev-master" 

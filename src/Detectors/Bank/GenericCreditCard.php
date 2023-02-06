@@ -4,7 +4,6 @@ namespace SME\ContentDetectors\Detectors\Bank;
 use SME\ContentDetectors\Detectors\Detector;
 use SME\ContentDetectors\Detectors\DetectorInterface;
 use SME\ContentDetectors\DataMatch;
-use Inacho\CreditCard as GenericCreditCardValidator;
 
 /**
  * Class GenericCreditCard
@@ -16,12 +15,22 @@ use Inacho\CreditCard as GenericCreditCardValidator;
  */
 class GenericCreditCard extends Detector implements DetectorInterface
 {
+    protected static $validator = null;
+
     /**
      * uniq code of detector
      * @var string
      */
     
     protected $code  = 'creditcard';
+
+
+    public function __construct() 
+    {
+        if (!self::$validator) {
+            self::$validator = new \Validate_Finance_CreditCard();
+        }
+    }
     
     /**
      * Returns the regular expression used to initially detect the content
@@ -41,18 +50,13 @@ class GenericCreditCard extends Detector implements DetectorInterface
      */
     public function validateMatch($match)
     {
-        $info = GenericCreditCardValidator::validCreditCard($match);
-
-        if (! (is_array($info) && array_key_exists('valid', $info) && ($info['valid'] === true))) {
+        if (! self::$validator->number($match)) {
             return false;
         }
 
         $result = new DataMatch();
         $result->setMatchType(self::class)
-            ->setMatchingContent($match)
-            ->setData([
-                'type' => $info['type']
-            ]);
+            ->setMatchingContent($match);
 
         return $result;
     }
