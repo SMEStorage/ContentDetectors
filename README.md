@@ -7,12 +7,21 @@ These content detectors are used as part of Storage Made Easy's [Content Detecti
 
 - PHP 5.6 or newer
 - [PHP Composer](https://getcomposer.org/)
+- change your composer.json to contain:
+   "repositories":[
+      {
+          "type": "vcs",
+          "url": "https://github.com/bystones/nhs-validator"
+      }
+   ]
+
 
 ## Using this library
-
+ 
 ```
 composer require storagemadeeasy/contentdetectors
 ```
+
 
 ## Usage
 
